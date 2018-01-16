@@ -3,6 +3,7 @@ using Mancoba.Sompisi.Core.Services.Contracts;
 using Mancoba.Sompisi.Data.Models;
 using Mancoba.Sompisi.Utils.Enums;
 using Mancoba.Sompisi.Utils.Language;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 using System;
@@ -101,6 +102,17 @@ namespace Mancoba.Sompisi.Core.ViewModels
             {
                 _isFetching = value;
                 RaisePropertyChanged(() => IsFetching);
+            }
+        }
+
+        private MvxAsyncCommand<SentItemViewModel> _applicationSelectedCommand;
+
+        public IMvxAsyncCommand ApplicationSelectedCommand
+        {
+            get
+            {
+                _applicationSelectedCommand = _applicationSelectedCommand ?? new MvxAsyncCommand<SentItemViewModel>(DoSelectItem);
+                return _applicationSelectedCommand;
             }
         }
 

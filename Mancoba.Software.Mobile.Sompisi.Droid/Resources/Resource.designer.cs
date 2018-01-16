@@ -2298,8 +2298,8 @@ namespace Mancoba.Sompisi.Droid
 			// aapt resource value: 0x7f06009e
 			public const int action_divider = 2131099806;
 			
-			// aapt resource value: 0x7f0600af
-			public const int action_example = 2131099823;
+			// aapt resource value: 0x7f0600b0
+			public const int action_example = 2131099824;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -2316,11 +2316,11 @@ namespace Mancoba.Sompisi.Droid
 			// aapt resource value: 0x7f06003e
 			public const int action_mode_close_button = 2131099710;
 			
-			// aapt resource value: 0x7f0600b1
-			public const int action_selections = 2131099825;
+			// aapt resource value: 0x7f0600b2
+			public const int action_selections = 2131099826;
 			
-			// aapt resource value: 0x7f0600b0
-			public const int action_settings = 2131099824;
+			// aapt resource value: 0x7f0600b1
+			public const int action_settings = 2131099825;
 			
 			// aapt resource value: 0x7f06003f
 			public const int activity_chooser_view_content = 2131099711;
@@ -2333,6 +2333,9 @@ namespace Mancoba.Sompisi.Droid
 			
 			// aapt resource value: 0x7f060020
 			public const int always = 2131099680;
+			
+			// aapt resource value: 0x7f0600a9
+			public const int applicationlist = 2131099817;
 			
 			// aapt resource value: 0x7f06008c
 			public const int appnametext = 2131099788;
@@ -2394,8 +2397,8 @@ namespace Mancoba.Sompisi.Droid
 			// aapt resource value: 0x7f060098
 			public const int content_frame = 2131099800;
 			
-			// aapt resource value: 0x7f0600ad
-			public const int content_text = 2131099821;
+			// aapt resource value: 0x7f0600ae
+			public const int content_text = 2131099822;
 			
 			// aapt resource value: 0x7f06007b
 			public const int count = 2131099771;
@@ -2529,8 +2532,8 @@ namespace Mancoba.Sompisi.Droid
 			// aapt resource value: 0x7f06009d
 			public const int media_actions = 2131099805;
 			
-			// aapt resource value: 0x7f0600b2
-			public const int menu_cancel = 2131099826;
+			// aapt resource value: 0x7f0600b3
+			public const int menu_cancel = 2131099827;
 			
 			// aapt resource value: 0x7f060089
 			public const int menuimage = 2131099785;
@@ -2562,8 +2565,8 @@ namespace Mancoba.Sompisi.Droid
 			// aapt resource value: 0x7f06000e
 			public const int normal = 2131099662;
 			
-			// aapt resource value: 0x7f0600ab
-			public const int ok_btn = 2131099819;
+			// aapt resource value: 0x7f0600ac
+			public const int ok_btn = 2131099820;
 			
 			// aapt resource value: 0x7f06007e
 			public const int orderlist = 2131099774;
@@ -2715,8 +2718,8 @@ namespace Mancoba.Sompisi.Droid
 			// aapt resource value: 0x7f060033
 			public const int start = 2131099699;
 			
-			// aapt resource value: 0x7f0600ae
-			public const int start_drawer = 2131099822;
+			// aapt resource value: 0x7f0600af
+			public const int start_drawer = 2131099823;
 			
 			// aapt resource value: 0x7f06009c
 			public const int status_bar_latest_event_content = 2131099804;
@@ -2727,8 +2730,8 @@ namespace Mancoba.Sompisi.Droid
 			// aapt resource value: 0x7f06000f
 			public const int tabMode = 2131099663;
 			
-			// aapt resource value: 0x7f0600aa
-			public const int terms = 2131099818;
+			// aapt resource value: 0x7f0600ab
+			public const int terms = 2131099819;
 			
 			// aapt resource value: 0x7f0600a4
 			public const int text = 2131099812;
@@ -2757,14 +2760,14 @@ namespace Mancoba.Sompisi.Droid
 			// aapt resource value: 0x7f06004a
 			public const int title_template = 2131099722;
 			
-			// aapt resource value: 0x7f0600ac
-			public const int toolbar = 2131099820;
+			// aapt resource value: 0x7f0600ad
+			public const int toolbar = 2131099821;
 			
 			// aapt resource value: 0x7f060096
 			public const int toolbar_actionbar = 2131099798;
 			
-			// aapt resource value: 0x7f0600a9
-			public const int toolbar_termsbar = 2131099817;
+			// aapt resource value: 0x7f0600aa
+			public const int toolbar_termsbar = 2131099818;
 			
 			// aapt resource value: 0x7f060034
 			public const int top = 2131099700;

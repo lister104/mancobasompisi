@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Mancoba.Software.Mobile.Sompisi.iOS")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Capitec Bank")]
+[assembly: AssemblyCompany("Mancoba Software")]
 [assembly: AssemblyProduct("Mancoba.Software.Mobile.Sompisi.iOS")]
-[assembly: AssemblyCopyright("Copyright © Capitec Bank 2018")]
+[assembly: AssemblyCopyright("Copyright © Mancoba Software 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

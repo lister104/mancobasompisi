@@ -110,8 +110,6 @@ namespace Mancoba.Sompisi.Droid.Views
 			}
 		}
 
-
-
 		#endregion
 	}
 }

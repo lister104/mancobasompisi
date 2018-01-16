@@ -27,12 +27,13 @@
                     android:layout_height="0.8dp"
                     android:background="#efefef" />
             </LinearLayout>
-            <LinearLayout style="@style/detail_item_horizontal">
+            <LinearLayout
+                style="@style/detail_item_horizontal">
                 <TextView
                     style="@style/list_item_label"
                     local:MvxBind="Text FirstNameLabel;" />
-              <EditText
-                  style="@style/list_item_value"
+                <EditText
+                    style="@style/list_item_value"
                     local:MvxBind="Text FirstName;" />
             </LinearLayout>
             <LinearLayout
@@ -40,8 +41,8 @@
                 <TextView
                     style="@style/list_item_label"
                     local:MvxBind="Text LastNameLabel;" />
-              <EditText
-                  style="@style/list_item_value"
+                <EditText
+                    style="@style/list_item_value"
                     local:MvxBind="Text LastName;" />
             </LinearLayout>
             <LinearLayout

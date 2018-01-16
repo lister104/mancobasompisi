@@ -8,9 +8,9 @@ using Android.App;
 [assembly: AssemblyTitle ("Mancoba.Software.Mobile.Sompisi.Droid")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("")]
-[assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("joe")]
+[assembly: AssemblyCompany ("Mancoba Software")]
+[assembly: AssemblyProduct ("Mancoba.Software.Mobile.Sompisi.Droid")]
+[assembly: AssemblyCopyright ("Copyright © Mancoba Software 2018")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 

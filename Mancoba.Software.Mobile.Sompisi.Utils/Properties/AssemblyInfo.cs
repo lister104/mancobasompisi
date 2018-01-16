@@ -7,9 +7,9 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("Mancoba.Software.Mobile.Sompisi.Utils")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("joe")]
+[assembly: AssemblyCompany("Mancoba Software")]
+[assembly: AssemblyProduct("Mancoba.Software.Mobile.Sompisi.Utils")]
+[assembly: AssemblyCopyright("Copyright © Mancoba Software 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

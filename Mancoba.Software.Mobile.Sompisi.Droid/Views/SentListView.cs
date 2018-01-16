@@ -26,7 +26,6 @@ namespace Mancoba.Sompisi.Droid.Views
     [Register("mancoba.sompisi.droid.views.SentListView")]
     public class SentListView : MvxFragment, View.IOnClickListener
     {
-
         public SentListView()
         {
             RetainInstance = true;
@@ -51,7 +50,7 @@ namespace Mancoba.Sompisi.Droid.Views
 
             _view = this.BindingInflate(layoutId, null);
 
-            _listview = _view.FindViewById<MvxListView>(Resource.Id.orderlist);
+            _listview = _view.FindViewById<MvxListView>(Resource.Id.applicationlist);
             _adapter = new SentListCustomAdapter(this.Activity, (IMvxAndroidBindingContext)BindingContext, this);
             _listview.Adapter = _adapter;
             _listview.ScrollStateChanged += HandleScrollStateChanged;

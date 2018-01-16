@@ -38,11 +38,11 @@
             android:id="@+id/refresher"
             local:MvxBind="Refreshing IsFetching">
           <Mvx.MvxListView
-              android:id="@+id/orderlist"
+              android:id="@+id/applicationlist"
               style="@style/layout_vertical"
               android:listSelector="@color/clear"
               android:divider="@color/clear"
-              local:MvxBind="ItemsSource FilteredList;ItemClick SentSelectedCommand"
+              local:MvxBind="ItemsSource FilteredList;ItemClick ApplicationSelectedCommand"
               local:MvxItemTemplate="@layout/sentsearchitem" />
         </Mancoba.Sompisi.Droid.Classes.Controls.MvxSwipeRefreshLayout>
         <ProgressBar
@@ -53,7 +53,7 @@
             android:layout_centerHorizontal="true"
             local:MvxBind="Visibility Visibility(IsLoading)"
             android:layout_alignParentLeft="true"
-            android:layout_above="@id/orderlist" />
+            android:layout_above="@id/applicationlist" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

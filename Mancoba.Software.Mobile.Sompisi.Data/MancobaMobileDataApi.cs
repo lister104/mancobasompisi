@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Mancoba.Sompisi.Data.Models;
 using Mancoba.Sompisi.Data.LocalDb;
 using Mancoba.Sompisi.Utils.Interfaces;
+using Plugin.Connectivity;
 
 namespace Mancoba.Sompisi.Data
 {
@@ -82,14 +83,12 @@ namespace Mancoba.Sompisi.Data
 
     public sealed class MancobaMobileDataApi : IMancobaMobileDataApi
     {
-
         #region Variables
 
         private bool _isAuthenticated;
         private string _authenticatedMessage;
         private readonly IMvxSqliteConnectionFactory _connectionFactory;
         private readonly IPlatformCapabilities _platformCapabilities;
-
         private ModelSystemUser _systemUser;
 
         #endregion
@@ -137,7 +136,7 @@ namespace Mancoba.Sompisi.Data
                 try
                 {
                     return true;
-                    //	return CrossConnectivity.Current.IsConnected;
+                    //return CrossConnectivity.Current.IsConnected;
                 }
                 catch (Exception)
                 {
