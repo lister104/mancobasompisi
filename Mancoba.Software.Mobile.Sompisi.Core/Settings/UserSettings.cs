@@ -24,8 +24,11 @@ namespace Mancoba.Sompisi.Core.Settings
 		public const string ProfileDefault = "";
 
 		private ISettings _settings;
-        
-		public void Clear()
+
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
+        public void Clear()
 		{
 			Username = UsernameDefault;
 			Password = PasswordDefault;

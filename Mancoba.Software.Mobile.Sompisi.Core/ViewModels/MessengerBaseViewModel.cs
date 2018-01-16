@@ -17,7 +17,11 @@ namespace Mancoba.Sompisi.Core.ViewModels
 		private bool _isLoading;
 		private string _modelName;
 
-		public MessengerBaseViewModel(IMvxMessenger messenger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessengerBaseViewModel"/> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
+        public MessengerBaseViewModel(IMvxMessenger messenger)
 		{
 			Messenger = messenger;
 
@@ -88,15 +92,25 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
 		private IMvxAsyncCommand _refreshCommand;
 
-		public IMvxAsyncCommand RefreshCommand
+        /// <summary>
+        /// Gets the refresh command.
+        /// </summary>
+        /// <value>
+        /// The refresh command.
+        /// </value>
+        public IMvxAsyncCommand RefreshCommand
 		{
 			get
 			{
 				return _refreshCommand = _refreshCommand ?? new MvxAsyncCommand(RefreshData);				
 			}
 		}
-                
-		public virtual async Task RefreshData()
+
+        /// <summary>
+        /// Refreshes the data.
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Task RefreshData()
 		{
 		    await Task.Run(() =>
 		    {

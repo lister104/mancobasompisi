@@ -15,6 +15,12 @@ namespace Mancoba.Sompisi.Utils.Helpers
         // ReSharper restore InconsistentNaming
         private static readonly object SyncLock = new object();
 
+        /// <summary>
+        /// Randoms the number.
+        /// </summary>
+        /// <param name="min">The minimum.</param>
+        /// <param name="max">The maximum.</param>
+        /// <returns></returns>
         public static int RandomNumber(int min, int max)
         {
             lock (SyncLock)
@@ -24,6 +30,13 @@ namespace Mancoba.Sompisi.Utils.Helpers
             }
         }
 
+        /// <summary>
+        /// Merges the lists.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="mainList">The main list.</param>
+        /// <param name="otherList">The other list.</param>
+        /// <returns></returns>
         public static IList<T> MergeLists<T>(IList<T> mainList, IList<T> otherList)
         {
             if (mainList == null)
@@ -37,16 +50,29 @@ namespace Mancoba.Sompisi.Utils.Helpers
 
         #region GUID
 
+        /// <summary>
+        /// Generates the unique identifier.
+        /// </summary>
+        /// <returns></returns>
         public static Guid GenerateGuid()
         {
             return Guid.NewGuid();
         }
 
+        /// <summary>
+        /// Generates the identifier.
+        /// </summary>
+        /// <returns></returns>
         public static string GenerateId()
         {
             return GenerateGuid().ToString("D");
         }
 
+        /// <summary>
+        /// Generates the identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public static string GenerateId(string id)
         {
             return string.IsNullOrWhiteSpace(id) ? GenerateGuid().ToString("D") : id;
@@ -56,6 +82,14 @@ namespace Mancoba.Sompisi.Utils.Helpers
 
         #region StringExtension
 
+        /// <summary>
+        /// Determines whether [contains ignore case] [the specified original text].
+        /// </summary>
+        /// <param name="originalText">The original text.</param>
+        /// <param name="compareText">The compare text.</param>
+        /// <returns>
+        ///   <c>true</c> if [contains ignore case] [the specified original text]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool ContainsIgnoreCase(this string originalText, string compareText)
         {
             if (string.IsNullOrWhiteSpace(originalText) || string.IsNullOrWhiteSpace(compareText))
@@ -66,26 +100,52 @@ namespace Mancoba.Sompisi.Utils.Helpers
                  0);
         }
 
+        /// <summary>
+        /// Ares the equal ignore case.
+        /// </summary>
+        /// <param name="originalText">The original text.</param>
+        /// <param name="compareText">The compare text.</param>
+        /// <returns></returns>
         public static bool AreEqualIgnoreCase(this string originalText, string compareText)
         {
             return string.Equals(originalText, compareText, StringComparison.OrdinalIgnoreCase);
         }
 
+        /// <summary>
+        /// To the date string.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns></returns>
         public static string ToDateString(this DateTime date)
         {
             return date.ToString(FormatDate);
         }
 
+        /// <summary>
+        /// To the date time string.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns></returns>
         public static string ToDateTimeString(this DateTime date)
         {
             return date.ToString(FormatDateTime);
         }
 
+        /// <summary>
+        /// To the date.
+        /// </summary>
+        /// <param name="dateString">The date string.</param>
+        /// <returns></returns>
         public static DateTime ToDate(this string dateString)
         {
             return DateTime.ParseExact(dateString, FormatDate, CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// To the date time.
+        /// </summary>
+        /// <param name="dateString">The date string.</param>
+        /// <returns></returns>
         public static DateTime ToDateTime(this string dateString)
         {
             return DateTime.ParseExact(dateString, FormatDateTime, CultureInfo.InvariantCulture);
@@ -94,6 +154,12 @@ namespace Mancoba.Sompisi.Utils.Helpers
         private const string Due = "Due";
         private const string Current = "Current";
 
+        /// <summary>
+        /// To the payment status.
+        /// </summary>
+        /// <param name="dateString">The date string.</param>
+        /// <param name="lastPaymentDate">The last payment date.</param>
+        /// <returns></returns>
         public static string ToPaymentStatus(this string dateString, DateTime? lastPaymentDate)
         {
             if (lastPaymentDate == null)
@@ -109,6 +175,5 @@ namespace Mancoba.Sompisi.Utils.Helpers
         }
 
         #endregion
-
     }
 }

@@ -25,12 +25,20 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationItemViewModel"/> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
         public ApplicationItemViewModel(IMvxMessenger messenger)
             : base(messenger)
         {
 
         }
 
+        /// <summary>
+        /// Initializes the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public void Init(ApplicationItemViewModel item)
         {
             FirstName = item.FirstName;

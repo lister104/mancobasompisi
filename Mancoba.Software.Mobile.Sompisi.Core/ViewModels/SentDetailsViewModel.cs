@@ -31,11 +31,19 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SentDetailsViewModel"/> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
         public SentDetailsViewModel(IMvxMessenger messenger) : base(messenger)
         {
 
         }
 
+        /// <summary>
+        /// Initializes the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public void Init(SentItemViewModel item)
         {
             Id = item.Id;
@@ -191,6 +199,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         private IMvxAsyncCommand _backCommand;
 
+        /// <summary>
+        /// Gets the back command.
+        /// </summary>
+        /// <value>
+        /// The back command.
+        /// </value>
         public IMvxAsyncCommand BackCommand
         {
             get
@@ -200,6 +214,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Does the back command.
+        /// </summary>
+        /// <returns></returns>
         private async Task DoBackCommand()
         {
             await Task.Run(() =>
@@ -212,6 +230,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         private IMvxAsyncCommand _makeFavourite;
 
+        /// <summary>
+        /// Gets the make favourite command.
+        /// </summary>
+        /// <value>
+        /// The make favourite command.
+        /// </value>
         public IMvxAsyncCommand MakeFavouriteCommand
         {
             get
@@ -221,6 +245,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Does the make favourite.
+        /// </summary>
+        /// <returns></returns>
         private async Task DoMakeFavourite()
         {
             IsLoading = true;
@@ -234,6 +262,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         private IMvxAsyncCommand _phoneNumberCommand;
 
+        /// <summary>
+        /// Gets the phone number command.
+        /// </summary>
+        /// <value>
+        /// The phone number command.
+        /// </value>
         public IMvxAsyncCommand PhoneNumberCommand
         {
             get
@@ -243,6 +277,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Does the phone number command.
+        /// </summary>
+        /// <returns></returns>
         private async Task DoPhoneNumberCommand()
         {
             if (string.IsNullOrEmpty(PhoneNumber))
@@ -254,6 +292,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         #region Public Methods
 
+        /// <summary>
+        /// Gets the sent application details.
+        /// </summary>
+        /// <returns></returns>
         public async Task GetSentApplicationDetails()
         {
             _isProviderLoaded = false;
@@ -279,6 +321,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             CheckLoadingStatus();
         }
 
+        /// <summary>
+        /// Gets the sent applications.
+        /// </summary>
+        /// <returns></returns>
         public async Task GetSentApplications()
         {
             _isProductLoaded = false;
@@ -323,6 +369,9 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Checks the loading status.
+        /// </summary>
         private void CheckLoadingStatus()
         {
             IsLoading = true;
@@ -330,6 +379,9 @@ namespace Mancoba.Sompisi.Core.ViewModels
                 IsLoading = false;
         }
 
+        /// <summary>
+        /// Reloads the sent application collection.
+        /// </summary>
         public void ReloadSentApplicationCollection()
         {
             RaisePropertyChanged(() => SentApplicationCollection);
@@ -341,6 +393,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         private List<SentItemViewModel> _sentApplicationCollection = new List<SentItemViewModel>();
 
+        /// <summary>
+        /// Gets or sets the sent application collection.
+        /// </summary>
+        /// <value>
+        /// The sent application collection.
+        /// </value>
         public List<SentItemViewModel> SentApplicationCollection
         {
             get { return _sentApplicationCollection; }

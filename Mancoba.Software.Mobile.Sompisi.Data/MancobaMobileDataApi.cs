@@ -95,7 +95,12 @@ namespace Mancoba.Sompisi.Data
 
         #region Constructors
 
-	    public MancobaMobileDataApi(IMvxSqliteConnectionFactory connectionFactory, IPlatformCapabilities platformCapabilities)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MancobaMobileDataApi"/> class.
+        /// </summary>
+        /// <param name="connectionFactory">The connection factory.</param>
+        /// <param name="platformCapabilities">The platform capabilities.</param>
+        public MancobaMobileDataApi(IMvxSqliteConnectionFactory connectionFactory, IPlatformCapabilities platformCapabilities)
 	    {
 		    Initialise();
 
@@ -112,7 +117,10 @@ namespace Mancoba.Sompisi.Data
 		    }
 	    }
 
-	    private void Initialise()
+        /// <summary>
+        /// Initialises this instance.
+        /// </summary>
+        private void Initialise()
         {
             _systemUser = null;
             _isAuthenticated = false;
@@ -123,11 +131,23 @@ namespace Mancoba.Sompisi.Data
 
         #region Properties
 
+        /// <summary>
+        /// Determines whether this instance is authenticated.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this instance is authenticated; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsAuthenticated()
         {
             return !string.IsNullOrWhiteSpace(_authenticatedMessage) && _isAuthenticated;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance is internet connected.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is internet connected; otherwise, <c>false</c>.
+        /// </value>
         public bool IsInternetConnected
         {
 
@@ -145,6 +165,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Sets the authenticated.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public void SetAuthenticated(string message)
         {
             _authenticatedMessage = message;
@@ -154,6 +178,12 @@ namespace Mancoba.Sompisi.Data
 
         #region SystemUser
 
+        /// <summary>
+        /// Logins the specified email address.
+        /// </summary>
+        /// <param name="emailAddress">The email address.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
         public async Task<ModelSystemUser> Login(string emailAddress, string password)
         {
 	        TestData.ConnectionFactory = _connectionFactory;
@@ -171,6 +201,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Logouts this instance.
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> Logout()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -180,6 +214,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Pings this instance.
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> Ping()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -189,6 +227,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Checks the out.
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> CheckOut()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -198,6 +240,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Checks the in.
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> CheckIn()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -207,6 +253,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the system user.
+        /// </summary>
+        /// <returns></returns>
         public async Task<ModelSystemUser> GetSystemUser()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -225,6 +275,10 @@ namespace Mancoba.Sompisi.Data
 
         #region Provider
 
+        /// <summary>
+        /// Gets the providers.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelProvider>> GetProviders()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -238,6 +292,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the provider.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelProvider> GetProvider(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -248,6 +307,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Favourites the provider.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<bool> FavouriteProvider(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -259,9 +323,14 @@ namespace Mancoba.Sompisi.Data
         }
 
         #endregion
-		
+
         #region ProviderPayment
 
+        /// <summary>
+        /// Gets the provider payments by provider.
+        /// </summary>
+        /// <param name="providerId">The provider identifier.</param>
+        /// <returns></returns>
         public async Task<List<ModelProviderPayment>> GetProviderPaymentsByProvider(string providerId)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -272,6 +341,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the provider payments by product.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns></returns>
         public async Task<List<ModelProviderPayment>> GetProviderPaymentsByProduct(string productId)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -282,6 +356,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the provider payments.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelProviderPayment>> GetProviderPayments()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -292,6 +370,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the provider payment.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelProviderPayment> GetProviderPayment(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -302,11 +385,16 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
-		#endregion
+        #endregion
 
-		#region Product
+        #region Product
 
-		public async Task<ModelProduct> GetProduct(string id)
+        /// <summary>
+        /// Gets the product.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<ModelProduct> GetProduct(string id)
 		{
 			using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
 			{
@@ -316,19 +404,27 @@ namespace Mancoba.Sompisi.Data
 			}
 		}
 
-		public async Task<List<ModelProduct>> GetProducts()
+        /// <summary>
+        /// Gets the products.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<ModelProduct>> GetProducts()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
             {
                 var response = await db.GetProducts();
 
-				if (response == null || response.Count == 0)
-					response = await TestData.GetProducts();
+                if (response == null || response.Count == 0)
+                    response = await TestData.GetProducts();
 
-				return response.ToModelCollection();
+                return response.ToModelCollection();
             }
         }
 
+        /// <summary>
+        /// Gets the provider products.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelProviderProduct>> GetProviderProducts()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -339,6 +435,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the provider product.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelProviderProduct> GetProviderProduct(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -349,6 +450,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the provider products.
+        /// </summary>
+        /// <param name="providerId">The provider identifier.</param>
+        /// <returns></returns>
         public async Task<List<ModelProviderProduct>> GetProviderProducts(string providerId)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -363,6 +469,10 @@ namespace Mancoba.Sompisi.Data
 
         #region Installer
 
+        /// <summary>
+        /// Gets the installers.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelInstaller>> GetInstallers()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -376,6 +486,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the installer.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelInstaller> GetInstaller(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -386,6 +501,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Favourites the installer.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<bool> FavouriteInstaller(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -395,11 +515,16 @@ namespace Mancoba.Sompisi.Data
                 return true;
             }
         }
-        
+
         #endregion
 
         #region Addresses
 
+        /// <summary>
+        /// Gets the province.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelProvince> GetProvince(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -409,6 +534,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the provinces.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelProvince>> GetProvinces()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -422,6 +551,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the town.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelTown> GetTown(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -431,6 +565,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the towns.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelTown>> GetTowns()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -444,6 +582,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the suburb.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelSuburb> GetSuburb(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -453,6 +596,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the suburbs.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelSuburb>> GetSuburbs()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -466,6 +613,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the street.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelStreet> GetStreet(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -475,6 +627,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the streets.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelStreet>> GetStreets()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -492,6 +648,11 @@ namespace Mancoba.Sompisi.Data
 
         #region Applications
 
+        /// <summary>
+        /// Saves the application.
+        /// </summary>
+        /// <param name="application">The application.</param>
+        /// <returns></returns>
         public async Task<bool> SaveApplication(ModelApplication application)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -502,6 +663,11 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the application.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelApplication> GetApplication(string id)
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))
@@ -516,6 +682,10 @@ namespace Mancoba.Sompisi.Data
             }
         }
 
+        /// <summary>
+        /// Gets the sent applications.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelApplication>> GetSentApplications()
         {
             using (var db = new MancobaLocalDataApi(_connectionFactory, _platformCapabilities))

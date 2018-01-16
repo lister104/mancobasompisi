@@ -22,6 +22,11 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MancobaLocalDataApi"/> class.
+        /// </summary>
+        /// <param name="connectionFactory">The connection factory.</param>
+        /// <param name="platformCapabilities">The platform capabilities.</param>
         public MancobaLocalDataApi(IMvxSqliteConnectionFactory connectionFactory, IPlatformCapabilities platformCapabilities)
         {
             //#warning If anything changes in here, DO HARDWARE RESET ON iOS SIMULATOR        
@@ -31,6 +36,10 @@ namespace Mancoba.Sompisi.Data.LocalDb
             CreateTables();
         }
 
+        /// <summary>
+        /// Gets the connection.
+        /// </summary>
+        /// <returns></returns>
         private SQLiteAsyncConnection GetConnection()
         {
             if(_connection == null)
@@ -39,6 +48,10 @@ namespace Mancoba.Sompisi.Data.LocalDb
             return _connection;
         }
 
+        /// <summary>
+        /// Gets the synchronize connection.
+        /// </summary>
+        /// <returns></returns>
         private SQLiteConnection GetSyncConnection()
         {
             if (_syncConnection == null)
@@ -53,13 +66,20 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
         private bool _disposed = false;
 
-		public void Dispose()
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
-		public void Dispose(bool disposing)
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        public void Dispose(bool disposing)
 		{
 			if (_disposed)
 				return;
@@ -96,7 +116,10 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			_disposed = true;
 		}
 
-		~MancobaLocalDataApi()
+        /// <summary>
+        /// Finalizes an instance of the <see cref="MancobaLocalDataApi"/> class.
+        /// </summary>
+        ~MancobaLocalDataApi()
 		{
 			Dispose(false);
 		}
@@ -108,6 +131,9 @@ namespace Mancoba.Sompisi.Data.LocalDb
         private static bool _hasCreatedTables;
         private static readonly object TableSync = new object();
 
+        /// <summary>
+        /// Creates the tables.
+        /// </summary>
         private void CreateTables()
         {
             if (_hasCreatedTables)
@@ -144,6 +170,9 @@ namespace Mancoba.Sompisi.Data.LocalDb
             }
         }
 
+        /// <summary>
+        /// Drops the tables.
+        /// </summary>
         private void DropTables()
         {
             lock (TableSync)
@@ -180,27 +209,52 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
         #region Auth
 
+        /// <summary>
+        /// Logins the specified email address.
+        /// </summary>
+        /// <param name="emailAddress">The email address.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
         public async Task<EntitySystemUser> Login(string emailAddress, string password)
 	    {			
 			return await Util.TryAsync(() => GetConnection().Table<EntitySystemUser>().FirstOrDefaultAsync(),
 				  failureMessage: "DataContext failed to find a EntitySystemUser");
 		}
 
-	    public async Task<int> Logout(string userId)
+        /// <summary>
+        /// Logouts the specified user identifier.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns></returns>
+        public async Task<int> Logout(string userId)
 	    {		    
             return await Task.Run(()=>1);
 		}
 
-	    public async Task<int> Ping()
+        /// <summary>
+        /// Pings this instance.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> Ping()
 	    {
             return await Task.Run(() => 1);
         }
 
+        /// <summary>
+        /// Checks the in.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns></returns>
         public async Task<int> CheckIn(string userId)
 		{
             return await Task.Run(() => 1);
         }
 
+        /// <summary>
+        /// Checks the out.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns></returns>
         public async Task<int> CheckOut(string userId)
 		{
             return await Task.Run(() => 1);
@@ -210,34 +264,58 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
         #region Users
 
+        /// <summary>
+        /// Gets the system user by identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<EntitySystemUser> GetSystemUserById(string id)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntitySystemUser>().Where(o => o.Id== id).FirstOrDefaultAsync(),
 			   failureMessage: "DataContext failed to load EntitySystemUser");
 		}
 
-		public async Task<EntitySystemUser> GetAnySystemUser()
+        /// <summary>
+        /// Gets any system user.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<EntitySystemUser> GetAnySystemUser()
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntitySystemUser>().FirstOrDefaultAsync(),
 			   failureMessage: "DataContext failed to load GetAnySystemUser");
 		}
 
-		public async Task<int> SaveSystemUser(EntitySystemUser town)
+        /// <summary>
+        /// Saves the system user.
+        /// </summary>
+        /// <param name="town">The town.</param>
+        /// <returns></returns>
+        public async Task<int> SaveSystemUser(EntitySystemUser town)
 		{
 			return await Util.TryAsync(() => GetConnection().InsertOrReplaceAsync(town),
 			   failureMessage: "DataContext failed to SAVE EntitySystemUser");
 		}
 
-		#endregion
+        #endregion
 
-		#region Installer
+        #region Installer
 
-		public async Task<EntityInstaller> GetInstaller(string id)
+        /// <summary>
+        /// Gets the installer.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<EntityInstaller> GetInstaller(string id)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityInstaller>().Where(o => o.Id == id).FirstOrDefaultAsync(),
 			   failureMessage: "DataContext failed to load EntityInstaller");
 		}
 
+        /// <summary>
+        /// Favourites the installer.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<int> FavouriteInstaller(string id)
         {
             var entity =  await GetInstaller(id);          
@@ -249,12 +327,21 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return 1;
 		}
 
+        /// <summary>
+        /// Gets the installers.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<EntityInstaller>> GetInstallers()
         {
             return await Util.TryAsync(() => GetConnection().Table<EntityInstaller>().ToListAsync(),
                failureMessage: "DataContext failed to load EntityInstaller");
         }
 
+        /// <summary>
+        /// Saves the installer.
+        /// </summary>
+        /// <param name="installer">The installer.</param>
+        /// <returns></returns>
         public async Task<int> SaveInstaller(EntityInstaller installer)
 		{
             installer.Id = UtilsService.GenerateId(installer.Id);
@@ -263,7 +350,12 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			  failureMessage: "DataContext failed to SAVE EntityInstaller");
 		}
 
-		public async Task<int> SaveInstaller(List<EntityInstaller> customers)
+        /// <summary>
+        /// Saves the installer.
+        /// </summary>
+        /// <param name="customers">The customers.</param>
+        /// <returns></returns>
+        public async Task<int> SaveInstaller(List<EntityInstaller> customers)
 		{
 			await customers.ParallelForEachAsync(async customer =>
 			{
@@ -279,31 +371,59 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
         #region Product
 
+        /// <summary>
+        /// Gets the product.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<EntityProduct> GetProduct(string id)
         {
             return await Util.TryAsync(() => GetConnection().Table<EntityProduct>().Where(o => o.Id == id).FirstOrDefaultAsync());
         }
 
+        /// <summary>
+        /// Gets the products.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<EntityProduct>> GetProducts()
         {
             return await Util.TryAsync(() => GetConnection().Table<EntityProduct>().ToListAsync());
         }
 
+        /// <summary>
+        /// Gets the provider product.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<EntityProviderProduct> GetProviderProduct(string id)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityProviderProduct>().Where(o => o.Id == id).FirstOrDefaultAsync());
 		}
 
-		public async Task<List<EntityProviderProduct>> GetProviderProducts(string providerId)
+        /// <summary>
+        /// Gets the provider products.
+        /// </summary>
+        /// <param name="providerId">The provider identifier.</param>
+        /// <returns></returns>
+        public async Task<List<EntityProviderProduct>> GetProviderProducts(string providerId)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityProviderProduct>().Where(o => o.ProviderId == providerId).ToListAsync());
 		}
 
+        /// <summary>
+        /// Gets the provider products.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<EntityProviderProduct>> GetProviderProducts()
         {
             return await Util.TryAsync(() => GetConnection().Table<EntityProviderProduct>().ToListAsync());
         }
 
+        /// <summary>
+        /// Saves the provider product.
+        /// </summary>
+        /// <param name="providerProduct">The provider product.</param>
+        /// <returns></returns>
         public async Task<int> SaveProviderProduct(EntityProviderProduct providerProduct)
 		{
             providerProduct.Id = UtilsService.GenerateId(providerProduct.Id);
@@ -312,7 +432,12 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			  failureMessage: "DataContext failed to SAVE EntityProviderProduct");
 		}
 
-	    public async Task<bool> SaveProduct(List<EntityProduct> products)
+        /// <summary>
+        /// Saves the product.
+        /// </summary>
+        /// <param name="products">The products.</param>
+        /// <returns></returns>
+        public async Task<bool> SaveProduct(List<EntityProduct> products)
 	    {
 		    await products.ParallelForEachAsync(async asset =>
 		    {
@@ -325,7 +450,12 @@ namespace Mancoba.Sompisi.Data.LocalDb
 		    return await Task.Run(() => true);
 	    }
 
-		public async Task<bool> SaveProviderProduct(List<EntityProviderProduct> products)
+        /// <summary>
+        /// Saves the provider product.
+        /// </summary>
+        /// <param name="products">The products.</param>
+        /// <returns></returns>
+        public async Task<bool> SaveProviderProduct(List<EntityProviderProduct> products)
 		{
 			await products.ParallelForEachAsync(async asset =>
 			{
@@ -338,28 +468,47 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return await Task.Run(() => true);
 		}
 
-		#endregion
+        #endregion
 
-		#region Provider
+        #region Provider
 
-		public async Task<EntityProvider> GetProvider(string id)
+        /// <summary>
+        /// Gets the provider.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<EntityProvider> GetProvider(string id)
         {
             return await Util.TryAsync(() => GetConnection().Table<EntityProvider>().OrderBy(o => o.Id == id).FirstOrDefaultAsync(),
                failureMessage: "DataContext failed to load EntityProvider by GetAccount");
         }
 
+        /// <summary>
+        /// Gets the providers.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<EntityProvider>> GetProviders()
         {
             return await Util.TryAsync(() => GetConnection().Table<EntityProvider>().ToListAsync(),
                failureMessage: "DataContext failed to load EntityProvider");
         }
 
+        /// <summary>
+        /// Finds the providers.
+        /// </summary>
+        /// <param name="searchText">The search text.</param>
+        /// <returns></returns>
         public async Task<List<EntityProvider>> FindProviders(string searchText)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityProvider>().Where(o => o.Name == searchText).ToListAsync(),
 			   failureMessage: "DataContext failed to load EntityProvider");
 		}
 
+        /// <summary>
+        /// Favourites the provider.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<int> FavouriteProvider(string id)
         {
             var entity = await GetProvider(id);
@@ -371,6 +520,11 @@ namespace Mancoba.Sompisi.Data.LocalDb
 	        return 1;
         }
 
+        /// <summary>
+        /// Saves the provider.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <returns></returns>
         public async Task<int> SaveProvider(EntityProvider provider)
 		{
             provider.Id = UtilsService.GenerateId(provider.Id);
@@ -379,7 +533,12 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			   failureMessage: "DataContext failed to SAVE EntityProvider");
 		}
 
-		public async Task<int> SaveProvider(List<EntityProvider> entities)
+        /// <summary>
+        /// Saves the provider.
+        /// </summary>
+        /// <param name="entities">The entities.</param>
+        /// <returns></returns>
+        public async Task<int> SaveProvider(List<EntityProvider> entities)
 		{
 			await entities.ParallelForEachAsync(async entity =>
 			{
@@ -390,34 +549,58 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return await Task.Run(() => 1);
 		}
 
-		#endregion
+        #endregion
 
-		#region Payments
+        #region Payments
 
-		public async Task<EntityProviderPayment> GetProviderPayment(string id)
+        /// <summary>
+        /// Gets the provider payment.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<EntityProviderPayment> GetProviderPayment(string id)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityProviderPayment>().Where(o => o.Id == id).FirstOrDefaultAsync(),
 			   failureMessage: "DataContext failed to load EntityProviderPayment");
 		}
 
-		public async Task<List<EntityProviderPayment>> GetProviderPaymentsByProvider(string providerId)
+        /// <summary>
+        /// Gets the provider payments by provider.
+        /// </summary>
+        /// <param name="providerId">The provider identifier.</param>
+        /// <returns></returns>
+        public async Task<List<EntityProviderPayment>> GetProviderPaymentsByProvider(string providerId)
 		{
             return await Util.TryAsync(() => GetConnection().Table<EntityProviderPayment>().Where(o => o.ProviderId == providerId).ToListAsync(),
                failureMessage: "DataContext failed to load EntityProviderPayment");
         }
 
-		public async Task<List<EntityProviderPayment>> GetProviderPaymentsByProduct(string productId)
+        /// <summary>
+        /// Gets the provider payments by product.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns></returns>
+        public async Task<List<EntityProviderPayment>> GetProviderPaymentsByProduct(string productId)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityProviderPayment>().Where(o => o.ProductId == productId).ToListAsync(),
 			   failureMessage: "DataContext failed to load TowEntityProviderPaymentns");
 		}
 
+        /// <summary>
+        /// Gets the provider payments.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<EntityProviderPayment>> GetProviderPayments()
         {
             return await Util.TryAsync(() => GetConnection().Table<EntityProviderPayment>().ToListAsync(),
                failureMessage: "DataContext failed to load EntityProviderPayment");
         }
 
+        /// <summary>
+        /// Saves the payment.
+        /// </summary>
+        /// <param name="providerPayment">The provider payment.</param>
+        /// <returns></returns>
         public async Task<int> SavePayment(EntityProviderPayment providerPayment)
 		{
             providerPayment.Id = UtilsService.GenerateId(providerPayment.Id);
@@ -426,23 +609,37 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			   failureMessage: "DataContext failed to load Towns");
 		}
 
-		#endregion
+        #endregion
 
-		#region Provinces
+        #region Provinces
 
-		public async Task<EntityProvince> GetProvince(string id)
+        /// <summary>
+        /// Gets the province.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<EntityProvince> GetProvince(string id)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityProvince>().Where(o => o.Id == id).FirstOrDefaultAsync(),
 			   failureMessage: "DataContext failed to load EntityProvince");
 		}
 
-		public async Task<List<EntityProvince>> GetProvinces()
+        /// <summary>
+        /// Gets the provinces.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<EntityProvince>> GetProvinces()
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityProvince>().OrderBy(o => o.Name).ToListAsync(),
 			   failureMessage: "DataContext failed to load EntityProvince");
 		}
 
-		public async Task<int> SaveProvince(List<EntityProvince> entities)
+        /// <summary>
+        /// Saves the province.
+        /// </summary>
+        /// <param name="entities">The entities.</param>
+        /// <returns></returns>
+        public async Task<int> SaveProvince(List<EntityProvince> entities)
 		{
 			await entities.ParallelForEachAsync(async entity =>
 			{
@@ -453,6 +650,11 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return await Task.Run(() => 1);
 		}
 
+        /// <summary>
+        /// Saves the province.
+        /// </summary>
+        /// <param name="province">The province.</param>
+        /// <returns></returns>
         public async Task<int> SaveProvince(EntityProvince province)
         {
             province.Id = UtilsService.GenerateId(province.Id);
@@ -465,25 +667,44 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
         #region Towns
 
+        /// <summary>
+        /// Gets the town.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<EntityTown> GetTown(string id)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityTown>().Where(o => o.Id == id).FirstOrDefaultAsync(),
 			   failureMessage: "DataContext {GetTown} failed to load EntityTown");
 		}
 
-		public async Task<List<EntityTown>> GetTowns()
+        /// <summary>
+        /// Gets the towns.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<EntityTown>> GetTowns()
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityTown>().OrderBy(o => o.Name).ToListAsync(),
 			   failureMessage: "DataContext {GetTowns} failed to load EntityTown", onFailureReturn: new List<EntityTown>());
 		}
-		
-		public async Task<List<EntityTown>> GetTownsByProvince(string provinceId)
+
+        /// <summary>
+        /// Gets the towns by province.
+        /// </summary>
+        /// <param name="provinceId">The province identifier.</param>
+        /// <returns></returns>
+        public async Task<List<EntityTown>> GetTownsByProvince(string provinceId)
 		{ 
 			return await Util.TryAsync(() => GetConnection().Table<EntityTown>().Where(o => o.ProvinceId == provinceId).ToListAsync(),
 			   failureMessage: "DataContext {GetTownsByProvince} failed to load EntityTown");
 		}
 
-		public async Task<int> SaveTown(EntityTown town)
+        /// <summary>
+        /// Saves the town.
+        /// </summary>
+        /// <param name="town">The town.</param>
+        /// <returns></returns>
+        public async Task<int> SaveTown(EntityTown town)
 		{
             town.Id = UtilsService.GenerateId(town.Id);
 
@@ -491,7 +712,12 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			   failureMessage: "DataContext {SaveTown} failed to load EntityTown");
 		}
 
-		public async Task<int> SaveTown(List<EntityTown> entities)
+        /// <summary>
+        /// Saves the town.
+        /// </summary>
+        /// <param name="entities">The entities.</param>
+        /// <returns></returns>
+        public async Task<int> SaveTown(List<EntityTown> entities)
 		{
 			await entities.ParallelForEachAsync(async entity =>
 			{
@@ -504,29 +730,48 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return await Task.Run(() => 1);
 		}
 
-		#endregion
+        #endregion
 
-		#region Suburbs
+        #region Suburbs
 
-		public async Task<EntitySuburb> GetSuburb(string id)
+        /// <summary>
+        /// Gets the suburb.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<EntitySuburb> GetSuburb(string id)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntitySuburb>().Where(o => o.Id == id).FirstOrDefaultAsync(),
 			   failureMessage: "DataContext failed to load EntitySuburb");
 		}
 
-		public async Task<List<EntitySuburb>> GetSuburbs()
+        /// <summary>
+        /// Gets the suburbs.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<EntitySuburb>> GetSuburbs()
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntitySuburb>().OrderBy(o => o.Name).ToListAsync(),
 			   failureMessage: "DataContext failed to load EntitySuburb");
 		}
 
-		public async Task<List<EntitySuburb>> GetSuburbsByTown(string townId)
+        /// <summary>
+        /// Gets the suburbs by town.
+        /// </summary>
+        /// <param name="townId">The town identifier.</param>
+        /// <returns></returns>
+        public async Task<List<EntitySuburb>> GetSuburbsByTown(string townId)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntitySuburb>().OrderBy(o => o.Name).ToListAsync(),
 			   failureMessage: "DataContext failed to load EntitySuburb");
 		}
 
-		public async Task<int> SaveSuburb(EntitySuburb suburb)
+        /// <summary>
+        /// Saves the suburb.
+        /// </summary>
+        /// <param name="suburb">The suburb.</param>
+        /// <returns></returns>
+        public async Task<int> SaveSuburb(EntitySuburb suburb)
 		{
             suburb.Id = UtilsService.GenerateId(suburb.Id);
 
@@ -534,7 +779,12 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			   failureMessage: "DataContext failed to SAVE EntitySuburb");
 		}
 
-		public async Task<int> SaveSuburb(List<EntitySuburb> entities)
+        /// <summary>
+        /// Saves the suburb.
+        /// </summary>
+        /// <param name="entities">The entities.</param>
+        /// <returns></returns>
+        public async Task<int> SaveSuburb(List<EntitySuburb> entities)
 		{
 			await entities.ParallelForEachAsync(async entity =>
 			{
@@ -547,29 +797,48 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return await Task.Run(() => 1);
 		}
 
-		#endregion
+        #endregion
 
-		#region Street
+        #region Street
 
-		public async Task<EntityStreet> GetStreet(string id)
+        /// <summary>
+        /// Gets the street.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<EntityStreet> GetStreet(string id)
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityStreet>().Where(o => o.Id == id).FirstOrDefaultAsync(),
 			   failureMessage: "DataContext failed to load Towns");
 		}
 
-		public async Task<List<EntityStreet>> GetStreets()
+        /// <summary>
+        /// Gets the streets.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<EntityStreet>> GetStreets()
 		{
 			return await Util.TryAsync(() => GetConnection().Table<EntityStreet>().OrderBy(o => o.Name).ToListAsync(),
 			   failureMessage: "DataContext failed to load Towns", onFailureReturn: new List<EntityStreet>());
 		}
 
-		public async Task<List<EntityStreet>> GetStreetsBySuburb(string suburbId)
+        /// <summary>
+        /// Gets the streets by suburb.
+        /// </summary>
+        /// <param name="suburbId">The suburb identifier.</param>
+        /// <returns></returns>
+        public async Task<List<EntityStreet>> GetStreetsBySuburb(string suburbId)
 		{
             return await Util.TryAsync(() => GetConnection().Table<EntityStreet>().Where(o => o.SuburbId == suburbId).ToListAsync(),
                failureMessage: "DataContext failed to load Towns");
         }
 
-		public async Task<int> SaveStreet(EntityStreet entity)
+        /// <summary>
+        /// Saves the street.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        public async Task<int> SaveStreet(EntityStreet entity)
 		{
             entity.Id = UtilsService.GenerateId(entity.Id);
 
@@ -577,7 +846,12 @@ namespace Mancoba.Sompisi.Data.LocalDb
                failureMessage: "DataContext failed to load Towns");
         }
 
-		public async Task<int> SaveStreet(List<EntityStreet> entities)
+        /// <summary>
+        /// Saves the street.
+        /// </summary>
+        /// <param name="entities">The entities.</param>
+        /// <returns></returns>
+        public async Task<int> SaveStreet(List<EntityStreet> entities)
 		{
 			await entities.ParallelForEachAsync(async entity =>
 			{
@@ -594,6 +868,11 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
         #region Applications
 
+        /// <summary>
+        /// Saves the application.
+        /// </summary>
+        /// <param name="application">The application.</param>
+        /// <returns></returns>
         public async Task<int> SaveApplication(EntityApplication application)
         {
             application.Id = UtilsService.GenerateId(application.Id);
@@ -602,12 +881,21 @@ namespace Mancoba.Sompisi.Data.LocalDb
               failureMessage: "DataContext failed to SAVE EntityApplication");
         }
 
+        /// <summary>
+        /// Gets the application.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<EntityApplication> GetApplication(string id)
         {
             return await Util.TryAsync(() => GetConnection().Table<EntityApplication>().Where(o => o.Id == id).FirstOrDefaultAsync(),
                failureMessage: "DataContext failed to load EntityApplication");
         }
 
+        /// <summary>
+        /// Gets the sent applications.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<EntityApplication>> GetSentApplications()
         {
             return await Util.TryAsync(() => GetConnection().Table<EntityApplication>().ToListAsync(),

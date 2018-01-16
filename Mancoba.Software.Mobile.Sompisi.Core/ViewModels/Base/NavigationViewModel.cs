@@ -22,8 +22,12 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 	}
 
 	public class NavigationViewModel : MessengerBaseViewModel
-	{		
-		public NavigationViewModel(IMvxMessenger messenger)
+	{
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NavigationViewModel"/> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
+        public NavigationViewModel(IMvxMessenger messenger)
 			: base(messenger)
 		{
 			LoadMenu();
@@ -31,7 +35,13 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 
 		private List<MenuViewModel> _menuItems;
 
-		public List<MenuViewModel> MenuItems
+        /// <summary>
+        /// Gets or sets the menu items.
+        /// </summary>
+        /// <value>
+        /// The menu items.
+        /// </value>
+        public List<MenuViewModel> MenuItems
 		{
 			get
 			{
@@ -44,7 +54,10 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 			}
 		}
 
-		private void LoadMenu()
+        /// <summary>
+        /// Loads the menu.
+        /// </summary>
+        private void LoadMenu()
 		{
 			_menuItems = new List<MenuViewModel>
 			{
@@ -102,7 +115,13 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 
 		private MvxAsyncCommand<MenuViewModel> _selectMenuItemCommand;
 
-		public IMvxAsyncCommand SelectMenuItemCommand
+        /// <summary>
+        /// Gets the select menu item command.
+        /// </summary>
+        /// <value>
+        /// The select menu item command.
+        /// </value>
+        public IMvxAsyncCommand SelectMenuItemCommand
 		{
 			get
 			{
@@ -110,7 +129,12 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 			}
 		}
 
-	    private async Task ExecuteSelectMenuItemCommand(MenuViewModel item)
+        /// <summary>
+        /// Executes the select menu item command.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns></returns>
+        private async Task ExecuteSelectMenuItemCommand(MenuViewModel item)
 	    {
 	        await Task.Run(() =>
 	        {
@@ -146,7 +170,14 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 	        });
 	    }
 
-	    public bool IsChildViewForViewModelType(Type type)
+        /// <summary>
+        /// Determines whether [is child view for view model type] [the specified type].
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>
+        ///   <c>true</c> if [is child view for view model type] [the specified type]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsChildViewForViewModelType(Type type)
 		{
 			if (type == typeof(TermsViewModel))
 				return true;
@@ -154,7 +185,14 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 			return false;
 		}
 
-		public bool IsFirstLevelViewForViewModelType(Type type)
+        /// <summary>
+        /// Determines whether [is first level view for view model type] [the specified type].
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>
+        ///   <c>true</c> if [is first level view for view model type] [the specified type]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsFirstLevelViewForViewModelType(Type type)
 		{			
 			if (type == typeof(DraftsViewModel))
 				return true;
@@ -177,7 +215,12 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 			return false;
 		}
 
-		public Section GetSectionForViewModelType(Type type)
+        /// <summary>
+        /// Gets the type of the section for view model.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
+        public Section GetSectionForViewModelType(Type type)
 		{
             if (type == typeof(DraftsViewModel))
                 return Section.Drafts;
@@ -204,17 +247,27 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 
 		public int ToolbarHeight { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		public int GetIndexOfMainMenuItem(Type type)
+        /// <summary>
+        /// Gets the index of main menu item.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
+        public int GetIndexOfMainMenuItem(Type type)
 		{
 			var i = MenuItems.Where(m => m.IsOnMainMenu && m.ViewModelType == type).Select(m => m.MenuIndex).FirstOrDefault();
 			return i;
 		}
 
-		public MenuViewModel GetMenuItemForMainMenuIndex(int index)
+        /// <summary>
+        /// Gets the index of the menu item for main menu.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns></returns>
+        public MenuViewModel GetMenuItemForMainMenuIndex(int index)
 		{
 			var i = MenuItems.Where(m => m.IsOnMainMenu && m.MenuIndex == index).Select(m => m).FirstOrDefault();
 			return i;

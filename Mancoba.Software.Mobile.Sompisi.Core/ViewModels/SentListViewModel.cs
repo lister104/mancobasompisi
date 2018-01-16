@@ -6,10 +6,8 @@ using Mancoba.Sompisi.Utils.Language;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Mancoba.Sompisi.Core.ViewModels
@@ -18,12 +16,20 @@ namespace Mancoba.Sompisi.Core.ViewModels
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SentListViewModel" /> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
         public SentListViewModel(IMvxMessenger messenger)
-            : base(messenger)
+                    : base(messenger)
         {
 
         }
 
+        /// <summary>
+        /// Initializes the specified applications sent.
+        /// </summary>
+        /// <param name="applicationsSent">The applications sent.</param>
         public void Init(List<ModelApplication> applicationsSent)
         {
             ShowList(applicationsSent);
@@ -33,6 +39,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         private string _searchString;
 
+        /// <summary>
+        /// Gets or sets the search string.
+        /// </summary>
+        /// <value>
+        /// The search string.
+        /// </value>
         public string SearchString
         {
             get { return _searchString; }
@@ -68,6 +80,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         public string Count => string.Format(LanguageResolver.ApplicationCountLabel, ApplicationList.Count.ToString());
 
+        /// <summary>
+        /// Shows the list.
+        /// </summary>
+        /// <param name="applicationsSent">The applications sent.</param>
         private void ShowList(List<ModelApplication> applicationsSent)
         {
             ApplicationList = Mapper.Map<List<ModelApplication>, List<SentItemViewModel>>(applicationsSent);
@@ -79,11 +95,17 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         public NavigationFrom NavigationFrom { get; set; }
 
+        /// <summary>
+        /// Resets the view.
+        /// </summary>
         public void ResetView()
         {
             RaisePropertyChanged(() => Count);
         }
 
+        /// <summary>
+        /// Clears this instance.
+        /// </summary>
         public void Clear()
         {
             foreach (var item in FilteredList)
@@ -95,6 +117,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         private bool _isFetching;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is fetching.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is fetching; otherwise, <c>false</c>.
+        /// </value>
         public bool IsFetching
         {
             get { return _isFetching; }
@@ -107,6 +135,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         private MvxAsyncCommand<SentItemViewModel> _applicationSelectedCommand;
 
+        /// <summary>
+        /// Gets the application selected command.
+        /// </summary>
+        /// <value>
+        /// The application selected command.
+        /// </value>
         public IMvxAsyncCommand ApplicationSelectedCommand
         {
             get
@@ -116,6 +150,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the sent applications.
+        /// </summary>
+        /// <returns></returns>
         public async Task GetSentApplications()
         {
             if (!IsFetching)
@@ -127,6 +165,11 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         #region Private Methods
 
+        /// <summary>
+        /// Does the select item.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns></returns>
         private async Task DoSelectItem(SentItemViewModel item)
         {
             await Task.Run(() =>
@@ -139,6 +182,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         #region Protected Methods
 
+        /// <summary>
+        /// Refreshes the data.
+        /// </summary>
+        /// <returns></returns>
         public override async Task RefreshData()
         {
             IsFetching = true;

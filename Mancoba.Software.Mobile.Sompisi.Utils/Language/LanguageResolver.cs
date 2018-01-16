@@ -5,7 +5,12 @@ namespace Mancoba.Sompisi.Utils.Language
 {
 	public static class LanguageResolver
 	{
-		public static string GetTheString(string message)
+        /// <summary>
+        /// Gets the string.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
+        public static string GetTheString(string message)
 		{
 			var type = typeof(LanguageResolver);
 			var fieldInfo = type.GetRuntimeField(message);
@@ -14,7 +19,13 @@ namespace Mancoba.Sompisi.Utils.Language
 			return GetString(message, result);
 		}
 
-		public static string GetString(string comment, string message = null)
+        /// <summary>
+        /// Gets the string.
+        /// </summary>
+        /// <param name="comment">The comment.</param>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
+        public static string GetString(string comment, string message = null)
 		{
 			var translated  = Localise.GetString(comment);
 

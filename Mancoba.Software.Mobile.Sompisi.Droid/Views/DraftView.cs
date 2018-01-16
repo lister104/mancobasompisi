@@ -13,6 +13,9 @@ using MvvmCross.Droid.Support.V4;
 using Mancoba.Sompisi.Droid.Classes.Helpers;
 using System.Threading.Tasks;
 
+/// <summary>
+/// 
+/// </summary>
 namespace Mancoba.Sompisi.Droid.Views
 {
     [MvxFragment(typeof(NavigationViewModel), Resource.Id.content_frame)]
@@ -23,6 +26,13 @@ namespace Mancoba.Sompisi.Droid.Views
         private DraftAdapter _adapter;
         private View _view;
 
+        /// <summary>
+        /// Called when [create view].
+        /// </summary>
+        /// <param name="inflater">The inflater.</param>
+        /// <param name="container">The container.</param>
+        /// <param name="savedInstanceState">State of the saved instance.</param>
+        /// <returns></returns>
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
         {
             HasOptionsMenu = true;
@@ -41,6 +51,9 @@ namespace Mancoba.Sompisi.Droid.Views
             return _view;
         }
 
+        /// <summary>
+        /// Called when [resume].
+        /// </summary>
         public override void OnResume()
         {
             base.OnResume();
@@ -48,6 +61,9 @@ namespace Mancoba.Sompisi.Droid.Views
             Task.Run(async () => { await ViewModel.GetDraftDetails(); });
         }
 
+        /// <summary>
+        /// Sets the ListView height based on children.
+        /// </summary>
         public void SetListViewHeightBasedOnChildren()
         {
             int desiredWidth = View.MeasureSpec.MakeMeasureSpec(_listView.Width, MeasureSpecMode.Unspecified);
@@ -74,6 +90,13 @@ namespace Mancoba.Sompisi.Droid.Views
         public new DraftsViewModel ViewModel => _viewModel ?? (_viewModel = base.ViewModel as DraftsViewModel);
 
         private bool _hasFetched;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance has fetched.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has fetched; otherwise, <c>false</c>.
+        /// </value>
         public bool HasFetched
         {
             get { return _hasFetched; }

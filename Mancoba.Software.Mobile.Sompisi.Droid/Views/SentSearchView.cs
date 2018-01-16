@@ -24,11 +24,21 @@ namespace Mancoba.Sompisi.Droid.Views
         private IMenuItem _editItem;
         private View _view;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SentSearchView"/> class.
+        /// </summary>
         public SentSearchView()
         {
             RetainInstance = true;
         }
 
+        /// <summary>
+        /// Called when [create view].
+        /// </summary>
+        /// <param name="inflater">The inflater.</param>
+        /// <param name="container">The container.</param>
+        /// <param name="savedInstanceState">State of the saved instance.</param>
+        /// <returns></returns>
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -36,16 +46,30 @@ namespace Mancoba.Sompisi.Droid.Views
             return CreateView(Resource.Layout.sentsearchview);
         }
 
+        /// <summary>
+        /// Called when [resume].
+        /// </summary>
         public override void OnResume()
         {
             Resume();
         }
 
+        /// <summary>
+        /// Called when [options item selected].
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns></returns>
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             return OptionsItemSelected(item);
         }
 
+        /// <summary>
+        /// Gets the view model.
+        /// </summary>
+        /// <value>
+        /// The view model.
+        /// </value>
         public new SentSearchViewModel ViewModel
         {
             get { return _viewModel ?? (_viewModel = base.ViewModel as SentSearchViewModel); }
@@ -53,6 +77,11 @@ namespace Mancoba.Sompisi.Droid.Views
 
         public NavigationFrom NavigationFrom { get; set; }
 
+        /// <summary>
+        /// Creates the view.
+        /// </summary>
+        /// <param name="layoutId">The layout identifier.</param>
+        /// <returns></returns>
         protected View CreateView(int layoutId)
         {
             HasOptionsMenu = false;
@@ -82,6 +111,9 @@ namespace Mancoba.Sompisi.Droid.Views
             return _view;
         }
 
+        /// <summary>
+        /// Resumes this instance.
+        /// </summary>
         protected void Resume()
         {
             base.OnResume();
@@ -89,6 +121,11 @@ namespace Mancoba.Sompisi.Droid.Views
 
         #region Menu
 
+        /// <summary>
+        /// Creates the options menu.
+        /// </summary>
+        /// <param name="menu">The menu.</param>
+        /// <param name="inflater">The inflater.</param>
         public void CreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             _editItem = menu.Add(Menu.None, Resource.Id.action_selections, Menu.First, "Edit");
@@ -102,6 +139,11 @@ namespace Mancoba.Sompisi.Droid.Views
             menu.RemoveItem(Resource.Id.action_selections);
         }
 
+        /// <summary>
+        /// Optionses the item selected.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns></returns>
         public bool OptionsItemSelected(IMenuItem item)
         {
             if (item.ItemId == Resource.Id.action_selections)

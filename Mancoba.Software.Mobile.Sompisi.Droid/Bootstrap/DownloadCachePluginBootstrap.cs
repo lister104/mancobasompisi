@@ -2,8 +2,11 @@ using MvvmCross.Platform.Plugins;
 
 namespace Mancoba.Sompisi.Droid.Bootstrap
 {
-    public class DownloadCachePluginBootstrap
-        : MvxPluginBootstrapAction<MvvmCross.Plugins.DownloadCache.PluginLoader>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="MvvmCross.Platform.Plugins.MvxPluginBootstrapAction{MvvmCross.Plugins.DownloadCache.PluginLoader}" />
+    public class DownloadCachePluginBootstrap : MvxPluginBootstrapAction<MvvmCross.Plugins.DownloadCache.PluginLoader>
     {
     }
 }

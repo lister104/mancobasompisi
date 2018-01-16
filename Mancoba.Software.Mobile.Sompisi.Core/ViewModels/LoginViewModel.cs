@@ -15,7 +15,6 @@ namespace Mancoba.Sompisi.Core.ViewModels
 	public class LoginViewModel : BaseValidationViewModel
 	{
 		#region Private Variables
-
 	
 		private readonly IUserSettings _userSettings;
 		private readonly IMobileDataService _auth;
@@ -33,26 +32,39 @@ namespace Mancoba.Sompisi.Core.ViewModels
         #endregion
 
         #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginViewModel" /> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
+        /// <param name="userSettings">The user settings.</param>
+        /// <param name="auth">The authentication.</param>
         public LoginViewModel(IMvxMessenger messenger, IUserSettings userSettings, IMobileDataService auth) : base(messenger)
-		{
-			_auth = auth;
-			_userSettings = userSettings;
-			_validator = new LoginValidator();
-			
-			LoginCommand = new MvxAsyncCommand(Login);
+        {
+            _auth = auth;
+            _userSettings = userSettings;
+            _validator = new LoginValidator();
+
+            LoginCommand = new MvxAsyncCommand(Login);
 
             EmailAddres = "info@mancoba.co.za";
             Task.Run(() => _auth.GetStreets());
         }
-		#endregion
 
-		#region Public Properties
+        #endregion
 
-		public string AppName => LanguageResolver.AppName;
+        #region Public Properties
+
+        public string AppName => LanguageResolver.AppName;
+
 		public string EmailAddressPlaceholder => LanguageResolver.LoginEmailAddress.ToUpperInvariant();
+
 		public string PasswordPlaceholder => LanguageResolver.LoginPassword.ToUpperInvariant();	
+
 		public string LoginButtonTitle => LanguageResolver.LoginButton.ToUpperInvariant();
+
 		public string LoginTerms => LanguageResolver.TermsAndConditionsTitle.ToUpperInvariant();
+
 		public string LoginForgotPassword => LanguageResolver.ForgotPasswordTitle;
 
 		public bool IsWidgetHidden
@@ -122,15 +134,18 @@ namespace Mancoba.Sompisi.Core.ViewModels
 			}
 		}
 
-		#endregion
+        #endregion
 
-		#region Private Methods
+        #region Private Methods
 
-		#endregion
+        #endregion
 
-		#region Public Methods
+        #region Public Methods
 
-		public void Init()
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        public void Init()
 		{           
             DoPingServer();
 
@@ -142,7 +157,11 @@ namespace Mancoba.Sompisi.Core.ViewModels
 			}
 		}
 
-		public async Task DoAutoLogin()
+        /// <summary>
+        /// Does the automatic login.
+        /// </summary>
+        /// <returns></returns>
+        public async Task DoAutoLogin()
 		{
 			IsLoading = true;
 			SetWidgetsVisiblity(false);
@@ -161,25 +180,38 @@ namespace Mancoba.Sompisi.Core.ViewModels
 			IsLoading = false;
 		}
 
+        /// <summary>
+        /// Does the terms command.
+        /// </summary>
+        /// <returns></returns>
         public async Task DoTermsCommand()
         {            
             await Mvx.Resolve<IUserInteraction>().AlertAsync("Coming Soon!", "Terms and Conditions", LanguageResolver.Ok);
         }
 
+        /// <summary>
+        /// Does the ping server.
+        /// </summary>
+        /// <returns></returns>
         public async Task DoPingServer()
 		{
 			await _auth.Ping();
 		}
 
-		
-
-		public async Task ShowTerms()
+        /// <summary>
+        /// Shows the terms.
+        /// </summary>
+        /// <returns></returns>
+        public async Task ShowTerms()
 		{
 			ShowViewModel<TermsViewModel>();
 		}
 
-
-		public async Task Login()
+        /// <summary>
+        /// Logins this instance.
+        /// </summary>
+        /// <returns></returns>
+        public async Task Login()
 		{
 			if (ValidationErrors != null)
 				ValidationErrors.Clear();
@@ -224,7 +256,11 @@ namespace Mancoba.Sompisi.Core.ViewModels
 			}
 		}
 
-		private void SetWidgetsVisiblity(bool visible)
+        /// <summary>
+        /// Sets the widgets visiblity.
+        /// </summary>
+        /// <param name="visible">if set to <c>true</c> [visible].</param>
+        private void SetWidgetsVisiblity(bool visible)
 		{
 			IsWidgetVisible = visible;
 			IsWidgetHidden = !visible;

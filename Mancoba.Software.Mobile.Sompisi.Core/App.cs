@@ -14,7 +14,10 @@ namespace Mancoba.Sompisi.Core
 {
 	public class App : MvxApplication
 	{
-		public override void Initialize()
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        public override void Initialize()
 		{
 			Mvx.ConstructAndRegisterSingleton<IUserSettings, UserSettings>();
 
@@ -28,7 +31,10 @@ namespace Mancoba.Sompisi.Core
 			RegisterAppStart(new CustomApplicationStart());
 		}
 
-		static void EntityMapping()
+        /// <summary>
+        /// Entities the mapping.
+        /// </summary>
+        static void EntityMapping()
 		{
             Mapper.CreateMap<ModelApplication, DraftItemViewModel>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))

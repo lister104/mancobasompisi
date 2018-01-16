@@ -14,6 +14,11 @@ namespace Mancoba.Sompisi.Droid.Classes.Helpers
 
     public interface ICustomPresenter
     {
+        /// <summary>
+        /// Registers the specified view model type.
+        /// </summary>
+        /// <param name="viewModelType">Type of the view model.</param>
+        /// <param name="host">The host.</param>
         void Register(Type viewModelType, IFragmentHost host);
     }
 
@@ -21,6 +26,10 @@ namespace Mancoba.Sompisi.Droid.Classes.Helpers
     {
         private readonly Dictionary<Type, IFragmentHost> _dictionary = new Dictionary<Type, IFragmentHost>();
 
+        /// <summary>
+        /// Shows the specified request.
+        /// </summary>
+        /// <param name="request">The request.</param>
         public override void Show(MvxViewModelRequest request)
         {
             IFragmentHost host;
@@ -45,6 +54,10 @@ namespace Mancoba.Sompisi.Droid.Classes.Helpers
             base.Show(request);
         }
 
+        /// <summary>
+        /// Closes the specified view model.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
         public override void Close(IMvxViewModel viewModel)
         {
             //We implement this code to auto close fragments where the user makes a selection
@@ -124,6 +137,11 @@ namespace Mancoba.Sompisi.Droid.Classes.Helpers
             }
         }
 
+        /// <summary>
+        /// Registers the specified view model type.
+        /// </summary>
+        /// <param name="viewModelType">Type of the view model.</param>
+        /// <param name="host">The host.</param>
         public void Register(Type viewModelType, IFragmentHost host)
         {
             _dictionary[viewModelType] = host;

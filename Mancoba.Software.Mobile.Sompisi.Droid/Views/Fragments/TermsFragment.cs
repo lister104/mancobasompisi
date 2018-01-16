@@ -19,7 +19,14 @@ namespace Mancoba.Sompisi.Droid.Views.Fragments
 		private View _view;
 		private Android.Support.V7.Widget.Toolbar _toolbar;
 
-		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        /// <summary>
+        /// Called when [create view].
+        /// </summary>
+        /// <param name="inflater">The inflater.</param>
+        /// <param name="container">The container.</param>
+        /// <param name="savedInstanceState">State of the saved instance.</param>
+        /// <returns></returns>
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			EnsureBindingContextSet(savedInstanceState);
 			_view = this.BindingInflate(Resource.Layout.termsfragment, null);
@@ -35,7 +42,10 @@ namespace Mancoba.Sompisi.Droid.Views.Fragments
 			return _view;
 		}
 
-		public override void OnResume()
+        /// <summary>
+        /// Called when [resume].
+        /// </summary>
+        public override void OnResume()
 		{
 			base.OnResume();			
 			// Auto size the dialog based on it's contents
@@ -48,26 +58,44 @@ namespace Mancoba.Sompisi.Droid.Views.Fragments
 			SetStyle((int)DialogFragmentStyle.NoTitle, Android.Resource.Style.ThemeTranslucentNoTitleBar);
 		}
 
-		public TermsViewModel TermsViewModel
+        /// <summary>
+        /// Gets the terms view model.
+        /// </summary>
+        /// <value>
+        /// The terms view model.
+        /// </value>
+        public TermsViewModel TermsViewModel
 		{
 			get { return (TermsViewModel)ViewModel; }
 		}
 
-		public void OnClick(IDialogInterface dialog, int which)
+        /// <summary>
+        /// Called when [click].
+        /// </summary>
+        /// <param name="dialog">The dialog.</param>
+        /// <param name="which">The which.</param>
+        public void OnClick(IDialogInterface dialog, int which)
 		{
 		}
 
-		#region IOnClickListener
+        #region IOnClickListener
 
-		public void OnClick(View v)
+        /// <summary>
+        /// Called when [click].
+        /// </summary>
+        /// <param name="v">The v.</param>
+        public void OnClick(View v)
 		{
 			InputMethodManager manager = (InputMethodManager)Activity.GetSystemService(Context.KeyguardService);
 			manager.HideSoftInputFromWindow(v.WindowToken, 0);
 		}
 
-		#endregion
+        #endregion
 
-		void TermsHtml()
+        /// <summary>
+        /// Termses the HTML.
+        /// </summary>
+        void TermsHtml()
 		{
 			var help = _view.FindViewById<WebView>(Resource.Id.terms);
 			help.LoadDataWithBaseURL("file:///android_asset/", TermsViewModel.TermsAndConditionsText, "text/html", "utf-8", "");

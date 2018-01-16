@@ -29,6 +29,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         public string SearchButtonTitle => LanguageResolver.SearchButton;
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is widget hidden.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is widget hidden; otherwise, <c>false</c>.
+        /// </value>
         public bool IsWidgetHidden
         {
             get
@@ -42,6 +48,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is widget visible.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is widget visible; otherwise, <c>false</c>.
+        /// </value>
         public bool IsWidgetVisible
         {
             get
@@ -55,6 +67,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets or sets the search text.
+        /// </summary>
+        /// <value>
+        /// The search text.
+        /// </value>
         public string SearchText
         {
             get { return _searchText; }
@@ -72,11 +90,19 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         #region Public Methods
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         public void Init()
         {
             SetWidgetsVisiblity(true);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SentSearchViewModel"/> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
+        /// <param name="dataService">The data service.</param>
         public SentSearchViewModel(IMvxMessenger messenger, IMobileDataService dataService) : base(messenger)
         {
             _dataService = dataService;
@@ -84,6 +110,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             _validator = new SentSearchValidator();
         }
 
+        /// <summary>
+        /// Searches the command handler.
+        /// </summary>
+        /// <returns></returns>
         public async Task SearchCommandHandler()
         {
             ValidationErrors?.Clear();
@@ -123,6 +153,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Sets the widgets visiblity.
+        /// </summary>
+        /// <param name="visible">if set to <c>true</c> [visible].</param>
         private void SetWidgetsVisiblity(bool visible)
         {
             IsWidgetVisible = visible;

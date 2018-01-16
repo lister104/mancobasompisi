@@ -48,7 +48,11 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 			}
 		}
 
-		public void ReportError(string error)
+        /// <summary>
+        /// Reports the error.
+        /// </summary>
+        /// <param name="error">The error.</param>
+        public void ReportError(string error)
 		{
 			// GetService<IErrorReporter>().ReportError(error);
 		}

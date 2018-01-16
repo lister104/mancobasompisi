@@ -25,12 +25,21 @@ namespace Mancoba.Sompisi.Droid
     {
         //		PushNotificationManager _notificationManager;
         public static Android.Content.Context AppContext;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Setup"/> class.
+        /// </summary>
+        /// <param name="applicationContext">The application context.</param>
         public Setup(Android.Content.Context applicationContext)
             : base(applicationContext)
         {
 
         }
 
+        /// <summary>
+        /// Creates the application.
+        /// </summary>
+        /// <returns></returns>
         protected override IMvxApplication CreateApp()
         {
             //RaygunClient.Attach("uJ1tOdoXPyAdlp4/St9KZw==");
@@ -39,6 +48,12 @@ namespace Mancoba.Sompisi.Droid
             return new App();
         }
 
+        /// <summary>
+        /// Gets the android view assemblies.
+        /// </summary>
+        /// <value>
+        /// The android view assemblies.
+        /// </value>
         protected override IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>(base.AndroidViewAssemblies)
         {
             typeof(Android.Support.Design.Widget.NavigationView).Assembly,
@@ -52,6 +67,7 @@ namespace Mancoba.Sompisi.Droid
         /// <summary>
         /// This is very important to override. The default view presenter does not know how to show fragments!
         /// </summary>
+        /// <returns></returns>
         protected override IMvxAndroidViewPresenter CreateViewPresenter()
         {
             var mvxFragmentsPresenter = new MvxFragmentsPresenter(AndroidViewAssemblies);
@@ -59,6 +75,9 @@ namespace Mancoba.Sompisi.Droid
             return mvxFragmentsPresenter;
         }
 
+        /// <summary>
+        /// Initializes the first chance.
+        /// </summary>
         protected override void InitializeFirstChance()
         {
             Mvx.ConstructAndRegisterSingleton<IApplicationConfigurationService, AndroidConfigurationService>();
@@ -71,6 +90,10 @@ namespace Mancoba.Sompisi.Droid
             base.InitializeFirstChance();
         }
 
+        /// <summary>
+        /// Fills the target factories.
+        /// </summary>
+        /// <param name="registry">The registry.</param>
         protected override void FillTargetFactories(MvvmCross.Binding.Bindings.Target.Construction.IMvxTargetBindingFactoryRegistry registry)
         {
             base.FillTargetFactories(registry);

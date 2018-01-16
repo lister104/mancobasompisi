@@ -30,7 +30,10 @@ namespace Mancoba.Sompisi.Droid.Classes.Settings
         /// <typeparam name="T">Vaue of t (bool, int, float, long, string)</typeparam>
         /// <param name="key">Key for settings</param>
         /// <param name="defaultValue">default value if not set</param>
-        /// <returns>Value or default</returns>
+        /// <returns>
+        /// Value or default
+        /// </returns>
+        /// <exception cref="ArgumentException"></exception>
         public T GetValueOrDefault<T>(string key, T defaultValue = default(T))
         {
             lock (locker)
@@ -95,7 +98,10 @@ namespace Mancoba.Sompisi.Droid.Classes.Settings
         /// </summary>
         /// <param name="key">key to update</param>
         /// <param name="value">value to set</param>
-        /// <returns>True if added or update and you need to save</returns>
+        /// <returns>
+        /// True if added or update and you need to save
+        /// </returns>
+        /// <exception cref="ArgumentException"></exception>
         public bool AddOrUpdateValue(string key, object value)
         {
             lock (locker)

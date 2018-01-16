@@ -14,11 +14,25 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
 {
     public class UserInteraction : IUserInteraction
     {
+        /// <summary>
+        /// Gets the current activity.
+        /// </summary>
+        /// <value>
+        /// The current activity.
+        /// </value>
         protected Activity CurrentActivity
         {
             get { return Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity; }
         }
 
+        /// <summary>
+        /// Confirms the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="okClicked">The ok clicked.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="okButton">The ok button.</param>
+        /// <param name="cancelButton">The cancel button.</param>
         public void Confirm(string message, Action okClicked, string title = null, string okButton = "OK", string cancelButton = "Cancel")
         {
             Confirm(message, confirmed =>
@@ -29,6 +43,14 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
                 title, okButton, cancelButton);
         }
 
+        /// <summary>
+        /// Confirms the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="answer">The answer.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="okButton">The ok button.</param>
+        /// <param name="cancelButton">The cancel button.</param>
         public void Confirm(string message, Action<bool> answer, string title = null, string okButton = "OK", string cancelButton = "Cancel")
         {
             //Mvx.Resolve<IMvxMainThreadDispatcher>().RequestMainThreadAction();
@@ -52,6 +74,14 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
             }, null);
         }
 
+        /// <summary>
+        /// Confirms the asynchronous.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="okButton">The ok button.</param>
+        /// <param name="cancelButton">The cancel button.</param>
+        /// <returns></returns>
         public Task<bool> ConfirmAsync(string message, string title = "", string okButton = "OK", string cancelButton = "Cancel")
         {
             var tcs = new TaskCompletionSource<bool>();
@@ -59,6 +89,15 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
             return tcs.Task;
         }
 
+        /// <summary>
+        /// Confirms the three buttons.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="answer">The answer.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="positive">The positive.</param>
+        /// <param name="negative">The negative.</param>
+        /// <param name="neutral">The neutral.</param>
         public void ConfirmThreeButtons(string message, Action<ConfirmThreeButtonsResponse> answer, string title = null, string positive = "Yes", string negative = "No", string neutral = "Maybe")
         {
             Application.SynchronizationContext.Post(ignored =>
@@ -86,6 +125,15 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
             }, null);
         }
 
+        /// <summary>
+        /// Confirms the three buttons asynchronous.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="positive">The positive.</param>
+        /// <param name="negative">The negative.</param>
+        /// <param name="neutral">The neutral.</param>
+        /// <returns></returns>
         public Task<ConfirmThreeButtonsResponse> ConfirmThreeButtonsAsync(string message, string title = null, string positive = "Yes", string negative = "No", string neutral = "Maybe")
         {
             var tcs = new TaskCompletionSource<ConfirmThreeButtonsResponse>();
@@ -93,6 +141,13 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
             return tcs.Task;
         }
 
+        /// <summary>
+        /// Alerts the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="done">The done.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="okButton">The ok button.</param>
         public void Alert(string message, Action done = null, string title = "", string okButton = "OK")
         {
             Application.SynchronizationContext.Post(ignored =>
@@ -110,6 +165,13 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
             }, null);
         }
 
+        /// <summary>
+        /// Alerts the asynchronous.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="okButton">The ok button.</param>
+        /// <returns></returns>
         public Task AlertAsync(string message, string title = "", string okButton = "OK")
         {
             var tcs = new TaskCompletionSource<object>();
@@ -117,6 +179,16 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
             return tcs.Task;
         }
 
+        /// <summary>
+        /// Inputs the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="okClicked">The ok clicked.</param>
+        /// <param name="placeholder">The placeholder.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="okButton">The ok button.</param>
+        /// <param name="cancelButton">The cancel button.</param>
+        /// <param name="initialText">The initial text.</param>
         public void Input(string message, Action<string> okClicked, string placeholder = null, string title = null, string okButton = "OK", string cancelButton = "Cancel", string initialText = null)
         {
             Input(message, (ok, text) =>
@@ -127,6 +199,16 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
                 placeholder, title, okButton, cancelButton, initialText);
         }
 
+        /// <summary>
+        /// Inputs the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="answer">The answer.</param>
+        /// <param name="hint">The hint.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="okButton">The ok button.</param>
+        /// <param name="cancelButton">The cancel button.</param>
+        /// <param name="initialText">The initial text.</param>
         public void Input(string message, Action<bool, string> answer, string hint = null, string title = null, string okButton = "OK", string cancelButton = "Cancel", string initialText = null)
         {
             Application.SynchronizationContext.Post(ignored =>
@@ -152,6 +234,16 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
             }, null);
         }
 
+        /// <summary>
+        /// Inputs the asynchronous.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="placeholder">The placeholder.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="okButton">The ok button.</param>
+        /// <param name="cancelButton">The cancel button.</param>
+        /// <param name="initialText">The initial text.</param>
+        /// <returns></returns>
         public Task<InputResponse> InputAsync(string message, string placeholder = null, string title = null, string okButton = "OK", string cancelButton = "Cancel", string initialText = null)
         {
             var tcs = new TaskCompletionSource<InputResponse>();
@@ -159,6 +251,12 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
             return tcs.Task;
         }
 
+        /// <summary>
+        /// Toasts the alert.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="gravity">The gravity.</param>
+        /// <param name="duration">The duration.</param>
         public void ToastAlert(string message, ToastGravity gravity = ToastGravity.Top, int duration = 3000)
         {
             Application.SynchronizationContext.Post(ignored =>
@@ -170,6 +268,12 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
             }, null);
         }
 
+        /// <summary>
+        /// Toasts the error alert.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="gravity">The gravity.</param>
+        /// <param name="duration">The duration.</param>
         public void ToastErrorAlert(string message, ToastGravity gravity = ToastGravity.Top, int duration = 5000)
         {
             Application.SynchronizationContext.Post(ignored =>
@@ -182,6 +286,12 @@ namespace Mancoba.Sompisi.Droid.Classes.UserInteraction
             }, null);
         }
 
+        /// <summary>
+        /// Toasts the error alert.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        /// <param name="gravity">The gravity.</param>
+        /// <param name="duration">The duration.</param>
         public void ToastErrorAlert(Exception ex, ToastGravity gravity = ToastGravity.Top, int duration = 5000)
         {
             ToastErrorAlert(ex.InnerException?.Message ?? ex.Message, gravity, duration);

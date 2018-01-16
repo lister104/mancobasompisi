@@ -17,7 +17,10 @@ namespace Mancoba.Sompisi.Data.LocalDb
 		internal static IMvxSqliteConnectionFactory ConnectionFactory;
 		internal static IPlatformCapabilities PlatformCapabilities;
 
-		static TestData()
+        /// <summary>
+        /// Initializes the <see cref="TestData"/> class.
+        /// </summary>
+        static TestData()
 		{
 			if(ConnectionFactory == null)
 				ConnectionFactory = Mvx.Resolve<IMvxSqliteConnectionFactory>();
@@ -26,7 +29,12 @@ namespace Mancoba.Sompisi.Data.LocalDb
 				PlatformCapabilities = Mvx.Resolve<IPlatformCapabilities>();			
 		}
 
-		public TestData(IMvxSqliteConnectionFactory connectionFactory, IPlatformCapabilities platformCapabilities)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestData"/> class.
+        /// </summary>
+        /// <param name="connectionFactory">The connection factory.</param>
+        /// <param name="platformCapabilities">The platform capabilities.</param>
+        public TestData(IMvxSqliteConnectionFactory connectionFactory, IPlatformCapabilities platformCapabilities)
 		{
 			ConnectionFactory = connectionFactory;
 			PlatformCapabilities = platformCapabilities;
@@ -36,7 +44,13 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
 		private static List<EntitySystemUser> _users = new List<EntitySystemUser>();
 
-		internal static async Task<EntitySystemUser> GetSystemUser(string emailAddress, string password)
+        /// <summary>
+        /// Gets the system user.
+        /// </summary>
+        /// <param name="emailAddress">The email address.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
+        internal static async Task<EntitySystemUser> GetSystemUser(string emailAddress, string password)
 		{
 			if (_users == null)
 				_users = new List<EntitySystemUser>();
@@ -69,7 +83,13 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return user;
 		}
 
-		private static void SetAddress(List<EntityStreet> streets, string name, ref EntitySystemUser entity)
+        /// <summary>
+        /// Sets the address.
+        /// </summary>
+        /// <param name="streets">The streets.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="entity">The entity.</param>
+        private static void SetAddress(List<EntityStreet> streets, string name, ref EntitySystemUser entity)
 		{
 			var str = streets[UtilsService.RandomNumber(0, streets.Count - 1)];
 			var sub = _suburbList.FirstOrDefault(c => c.Id == str.SuburbId);
@@ -91,52 +111,62 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
 		private static List<EntityProvider> _providers = new List<EntityProvider>();
 
-		internal static async Task<List<EntityProvider>> GetProviders()
-		{
+        /// <summary>
+        /// Gets the providers.
+        /// </summary>
+        /// <returns></returns>
+        internal static async Task<List<EntityProvider>> GetProviders()
+        {
 
-			if (_providers == null)
-				_providers = new List<EntityProvider>();
+            if (_providers == null)
+                _providers = new List<EntityProvider>();
 
-			if (_providers.Count == 0)
-			{
-				var streets = await GetStreets();
+            if (_providers.Count == 0)
+            {
+                var streets = await GetStreets();
 
-				var dto1 = new EntityProvider();
-				dto1.Id = UtilsService.GenerateId(dto1.Id);
-				dto1.Name = "MultiChoice South Africa";
-				dto1.ContactPerson = "Sales Team";
-				dto1.EmailAddress = "sales@multichoice.co.za";
-				dto1.PhoneNumber = "+27 21 508 1234";
-				dto1.MobileNumber = null;
+                var dto1 = new EntityProvider();
+                dto1.Id = UtilsService.GenerateId(dto1.Id);
+                dto1.Name = "MultiChoice South Africa";
+                dto1.ContactPerson = "Sales Team";
+                dto1.EmailAddress = "sales@multichoice.co.za";
+                dto1.PhoneNumber = "+27 21 508 1234";
+                dto1.MobileNumber = null;
                 dto1.WebAddress = "http://www.multichoice.co.za";
                 dto1.IsFavourite = false;
 
-			    SetAddress(streets, "15, DStv House", ref dto1);                
-				_providers.Add(dto1);
+                SetAddress(streets, "15, DStv House", ref dto1);
+                _providers.Add(dto1);
 
-				var dto2 = new EntityProvider();
-				dto2.Id = UtilsService.GenerateId(dto2.Id);
-				dto2.Name = "MultiChoice Africa";
-				dto2.ContactPerson = "Sales Manager";
-				dto2.EmailAddress = "manager@multichoiceafrica.com";
-				dto2.PhoneNumber = "+27 11 218 2342";
-				dto2.MobileNumber = "+27 82 131 3893";
+                var dto2 = new EntityProvider();
+                dto2.Id = UtilsService.GenerateId(dto2.Id);
+                dto2.Name = "MultiChoice Africa";
+                dto2.ContactPerson = "Sales Manager";
+                dto2.EmailAddress = "manager@multichoiceafrica.com";
+                dto2.PhoneNumber = "+27 11 218 2342";
+                dto2.MobileNumber = "+27 82 131 3893";
                 dto2.WebAddress = "http://www.multichoice.co.za";
                 dto2.IsFavourite = false;
 
                 SetAddress(streets, "64, Africa House", ref dto2);
                 _providers.Add(dto2);
-			}
+            }
 
-			using (var db = new MancobaLocalDataApi(ConnectionFactory, PlatformCapabilities))
-			{
-				var response = await db.SaveProvider(_providers);
-			}
+            using (var db = new MancobaLocalDataApi(ConnectionFactory, PlatformCapabilities))
+            {
+                var response = await db.SaveProvider(_providers);
+            }
 
-			return _providers.OrderBy(c => c.Name).ToList();
-		}
+            return _providers.OrderBy(c => c.Name).ToList();
+        }
 
-	    private static void SetAddress(List<EntityStreet> streets, string name, ref EntityProvider entity)
+        /// <summary>
+        /// Sets the address.
+        /// </summary>
+        /// <param name="streets">The streets.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="entity">The entity.</param>
+        private static void SetAddress(List<EntityStreet> streets, string name, ref EntityProvider entity)
 	    {
 	        var str = streets[UtilsService.RandomNumber(0, streets.Count - 1)];
 	        var sub = _suburbList.FirstOrDefault(c => c.Id == str.SuburbId);
@@ -158,7 +188,11 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
 		private static List<EntityInstaller> _installers = new List<EntityInstaller>();
 
-		internal static async Task<List<EntityInstaller>> GetInstallers()
+        /// <summary>
+        /// Gets the installers.
+        /// </summary>
+        /// <returns></returns>
+        internal static async Task<List<EntityInstaller>> GetInstallers()
 		{
 			if (_installers == null)
 				_installers = new List<EntityInstaller>();
@@ -210,6 +244,11 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return _installers.OrderBy(c => c.Name).ToList();
 		}
 
+        /// <summary>
+        /// Sets the address.
+        /// </summary>
+        /// <param name="streets">The streets.</param>
+        /// <param name="entity">The entity.</param>
         private static void SetAddress(List<EntityStreet> streets, ref EntityInstaller entity)
         {
             var str = streets[UtilsService.RandomNumber(0, streets.Count - 1)];
@@ -232,90 +271,98 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
         private static List<EntityProduct> _products = new List<EntityProduct>();
 
-		internal static async Task<List<EntityProduct>> GetProducts()
-		{
+        /// <summary>
+        /// Gets the products.
+        /// </summary>
+        /// <returns></returns>
+        internal static async Task<List<EntityProduct>> GetProducts()
+        {
 
-			if (_products == null)
-				_products = new List<EntityProduct>();
+            if (_products == null)
+                _products = new List<EntityProduct>();
 
-			if (_products.Count == 0)
-			{
-				_products.Add(new EntityProduct()
-				{
-					Id = UtilsService.GenerateId(),
-					Name = "PVR Decoder",
-					Description = "DStv PVR Decoder",
-					Price = 698
-				});
+            if (_products.Count == 0)
+            {
+                _products.Add(new EntityProduct()
+                {
+                    Id = UtilsService.GenerateId(),
+                    Name = "PVR Decoder",
+                    Description = "DStv PVR Decoder",
+                    Price = 698
+                });
 
-				_products.Add(new EntityProduct()
-				{
-					Id = UtilsService.GenerateId(),
-					Name = "Single-View Decoder",
-					Description = "DStv Single-View Decoder",
-					Price = 350
-				});
+                _products.Add(new EntityProduct()
+                {
+                    Id = UtilsService.GenerateId(),
+                    Name = "Single-View Decoder",
+                    Description = "DStv Single-View Decoder",
+                    Price = 350
+                });
 
-				_products.Add(new EntityProduct()
-				{
-					Id = UtilsService.GenerateId(),
-					Name = "Dual -View Decoder",
-					Description = "DStv Dual-View Decoder",
-					Price = 450
-				});
+                _products.Add(new EntityProduct()
+                {
+                    Id = UtilsService.GenerateId(),
+                    Name = "Dual -View Decoder",
+                    Description = "DStv Dual-View Decoder",
+                    Price = 450
+                });
 
-				_products.Add(new EntityProduct()
-				{
-					Id = UtilsService.GenerateId(),
-					Name = "Explora Decoder",
-					Description = "DStv Explora Decoder",
-					Price = 1300
-				});
+                _products.Add(new EntityProduct()
+                {
+                    Id = UtilsService.GenerateId(),
+                    Name = "Explora Decoder",
+                    Description = "DStv Explora Decoder",
+                    Price = 1300
+                });
 
-				_products.Add(new EntityProduct()
-				{
-					Id = UtilsService.GenerateId(),
-					Name = "2-Tuner PVR Decoder",
-					Description = "DStv 2-Tuner Decoder",
-					Price = 799
-				});
+                _products.Add(new EntityProduct()
+                {
+                    Id = UtilsService.GenerateId(),
+                    Name = "2-Tuner PVR Decoder",
+                    Description = "DStv 2-Tuner Decoder",
+                    Price = 799
+                });
 
-				_products.Add(new EntityProduct()
-				{
-					Id = UtilsService.GenerateId(),
-					Name = "SD PVR Decoder",
-					Description = "DStv SD PVR Decoder",
-					Price = 900
-				});
+                _products.Add(new EntityProduct()
+                {
+                    Id = UtilsService.GenerateId(),
+                    Name = "SD PVR Decoder",
+                    Description = "DStv SD PVR Decoder",
+                    Price = 900
+                });
 
-				_products.Add(new EntityProduct()
-				{
-					Id = UtilsService.GenerateId(),
-					Name = "UEC 4-tuner PVR Decoder",
-					Description = "DStv UEC 4-tuner PVR Decoder",
-					Price = 900
-				});
+                _products.Add(new EntityProduct()
+                {
+                    Id = UtilsService.GenerateId(),
+                    Name = "UEC 4-tuner PVR Decoder",
+                    Description = "DStv UEC 4-tuner PVR Decoder",
+                    Price = 900
+                });
 
-			}
+            }
 
-			using (var db = new MancobaLocalDataApi(ConnectionFactory, PlatformCapabilities))
-			{
-				var response = await db.SaveProduct(_products);
-			}
+            using (var db = new MancobaLocalDataApi(ConnectionFactory, PlatformCapabilities))
+            {
+                var response = await db.SaveProduct(_products);
+            }
 
-			return _products.OrderBy(c => c.Name).ToList();
-		}
+            return _products.OrderBy(c => c.Name).ToList();
+        }
 
-		#endregion
+        #endregion
 
-		#region Addresses
+        #region Addresses
 
-		private static List<EntityProvince> _provinceList = new List<EntityProvince>();
+        private static List<EntityProvince> _provinceList = new List<EntityProvince>();
 		private static List<EntityTown> _townList = new List<EntityTown>();
 		private static List<EntitySuburb> _suburbList = new List<EntitySuburb>();
 		private static List<EntityStreet> _streetList = new List<EntityStreet>();
 
-		public static async Task<List<EntityProvince>> GetProvinces()
+        /// <summary>
+        /// Gets the provinces.
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<EntityProvince>> GetProvinces()
 		{
 			if (_provinceList == null || _provinceList.Count == 0)
 			{
@@ -388,7 +435,12 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return _provinceList.OrderBy(c => c.Name).ToList();
 		}
 
-		public static async Task<EntityProvince> GetProvinceByName(string name)
+        /// <summary>
+        /// Gets the name of the province by.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public static async Task<EntityProvince> GetProvinceByName(string name)
 		{
 			return await Task.Run(async () =>
 			{
@@ -402,7 +454,11 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			});
 		}
 
-		public static async Task<List<EntityTown>> GetTowns()
+        /// <summary>
+        /// Gets the towns.
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<EntityTown>> GetTowns()
 		{
 			if (_townList == null || _townList.Count == 0)
 			{
@@ -570,7 +626,12 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return _townList.OrderBy(c => c.Name).ToList();
 		}
 
-		public static async Task<EntityTown> GetTownByName(string name)
+        /// <summary>
+        /// Gets the name of the town by.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public static async Task<EntityTown> GetTownByName(string name)
 		{
 			return await Task.Run(async () =>
 			{
@@ -584,7 +645,11 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			});
 		}
 
-		public static async Task<List<EntitySuburb>> GetSuburbs()
+        /// <summary>
+        /// Gets the suburbs.
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<EntitySuburb>> GetSuburbs()
 		{
 			if (_suburbList == null || _suburbList.Count == 0)
 			{
@@ -632,7 +697,11 @@ namespace Mancoba.Sompisi.Data.LocalDb
 			return _suburbList.OrderBy(c => c.Name).ToList();
 		}
 
-		public static async Task<List<EntityStreet>> GetStreets()
+        /// <summary>
+        /// Gets the streets.
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<EntityStreet>> GetStreets()
 		{
 
 			if (_streetList == null || _streetList.Count == 0)
@@ -680,6 +749,10 @@ namespace Mancoba.Sompisi.Data.LocalDb
 
         private static List<EntityApplication> _applications = new List<EntityApplication>();
 
+        /// <summary>
+        /// Gets the sent applications.
+        /// </summary>
+        /// <returns></returns>
         internal static async Task<List<EntityApplication>> GetSentApplications()
         {
             if (_applications == null)
@@ -725,6 +798,11 @@ namespace Mancoba.Sompisi.Data.LocalDb
             return _applications.OrderBy(c => c.FirstName).ToList();
         }
 
+        /// <summary>
+        /// Sets the address.
+        /// </summary>
+        /// <param name="streets">The streets.</param>
+        /// <param name="entity">The entity.</param>
         private static void SetAddress(List<EntityStreet> streets, ref EntityApplication entity)
         {
             var str = streets[UtilsService.RandomNumber(0, streets.Count - 1)];

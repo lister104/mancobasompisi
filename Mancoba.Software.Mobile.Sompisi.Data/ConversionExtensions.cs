@@ -6,9 +6,14 @@ namespace Mancoba.Sompisi.Data
 {
     internal static class ConversionExtensions
     {
-		#region SystemUser
+        #region SystemUser
 
-		internal static ModelSystemUser ToModel(this EntitySystemUser entity)
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        internal static ModelSystemUser ToModel(this EntitySystemUser entity)
 		{
 			var model = new ModelSystemUser();
 			model.Id = entity.Id;		
@@ -33,6 +38,11 @@ namespace Mancoba.Sompisi.Data
 			return model;
 		}
 
+        /// <summary>
+        /// To the entity.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         internal static EntitySystemUser ToEntity(this ModelSystemUser model)
         {
             var entity = new EntitySystemUser();
@@ -61,6 +71,11 @@ namespace Mancoba.Sompisi.Data
 
         #region Provider
 
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         internal static ModelProvider ToModel(this EntityProvider entity)
         {
             var model = new ModelProvider();
@@ -84,6 +99,11 @@ namespace Mancoba.Sompisi.Data
             return model;
         }
 
+        /// <summary>
+        /// To the model collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
         internal static List<ModelProvider> ToModelCollection(this List<EntityProvider> dtoList)
         {
             var modelList = new List<ModelProvider>();
@@ -99,6 +119,11 @@ namespace Mancoba.Sompisi.Data
             return modelList;
         }
 
+        /// <summary>
+        /// To the entity.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         internal static EntityProvider ToEntity(this ModelProvider model)
         {
             var entity = new EntityProvider();
@@ -123,6 +148,11 @@ namespace Mancoba.Sompisi.Data
             return entity;
         }
 
+        /// <summary>
+        /// To the entity collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
         internal static List<EntityProvider> ToEntityCollection(this List<ModelProvider> dtoList)
         {
             var modelList = new List<EntityProvider>();
@@ -142,6 +172,11 @@ namespace Mancoba.Sompisi.Data
 
         #region Installer
 
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         internal static ModelInstaller ToModel(this EntityInstaller entity)
         {
             var model = new ModelInstaller();
@@ -165,6 +200,11 @@ namespace Mancoba.Sompisi.Data
             return model;
         }
 
+        /// <summary>
+        /// To the model collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
         internal static List<ModelInstaller> ToModelCollection(this List<EntityInstaller> dtoList)
 		{
 			var modelList = new List<ModelInstaller>();
@@ -180,7 +220,12 @@ namespace Mancoba.Sompisi.Data
 			return modelList;
 		}
 
-	    internal static EntityInstaller ToEntity(this ModelInstaller model)
+        /// <summary>
+        /// To the entity.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        internal static EntityInstaller ToEntity(this ModelInstaller model)
 		{
 			var entity = new EntityInstaller();
 			entity.Id = model.Id;
@@ -202,9 +247,14 @@ namespace Mancoba.Sompisi.Data
             entity.Country = model.Country;
 
             return entity;
-		}						
+		}
 
-		internal static List<EntityInstaller> ToEntityCollection(this List<ModelInstaller> dtoList)
+        /// <summary>
+        /// To the entity collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
+        internal static List<EntityInstaller> ToEntityCollection(this List<ModelInstaller> dtoList)
 		{
 			var modelList = new List<EntityInstaller>();
 
@@ -223,6 +273,11 @@ namespace Mancoba.Sompisi.Data
 
         #region ProviderPayment
 
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         internal static ModelProviderPayment ToModel(this EntityProviderPayment entity)
 		{
 			var model = new ModelProviderPayment();
@@ -236,6 +291,11 @@ namespace Mancoba.Sompisi.Data
             return model;
 		}
 
+        /// <summary>
+        /// To the model collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
         internal static List<ModelProviderPayment> ToModelCollection(this List<EntityProviderPayment> dtoList)
         {
             var modelList = new List<ModelProviderPayment>();
@@ -251,6 +311,11 @@ namespace Mancoba.Sompisi.Data
             return modelList;
         }
 
+        /// <summary>
+        /// To the entity.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         internal static EntityProviderPayment ToEntity(this ModelProviderPayment model)
 		{
             var entity = new EntityProviderPayment();
@@ -268,6 +333,11 @@ namespace Mancoba.Sompisi.Data
 
         #region Product
 
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         internal static ModelProduct ToModel(this EntityProduct entity)
         {
             var model = new ModelProduct();
@@ -279,6 +349,11 @@ namespace Mancoba.Sompisi.Data
 			return model;
         }
 
+        /// <summary>
+        /// To the model collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
         internal static List<ModelProduct> ToModelCollection(this List<EntityProduct> dtoList)
         {
             var modelList = new List<ModelProduct>();
@@ -294,6 +369,11 @@ namespace Mancoba.Sompisi.Data
             return modelList;
         }
 
+        /// <summary>
+        /// To the entity.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         internal static EntityProduct ToEntity(this ModelProduct model)
         {
             var entity = new EntityProduct();
@@ -305,6 +385,11 @@ namespace Mancoba.Sompisi.Data
 			return entity;
         }
 
+        /// <summary>
+        /// To the entity collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
         internal static List<EntityProduct> ToEntityCollection(this List<ModelProduct> dtoList)
         {
             var modelList = new List<EntityProduct>();
@@ -324,29 +409,44 @@ namespace Mancoba.Sompisi.Data
 
         #region ProviderProduct
 
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         internal static ModelProviderProduct ToModel(this EntityProviderProduct entity)
-		{
-			var model = new ModelProviderProduct();
-			model.Id = entity.Id;
-			
-			return model;
-		}
+        {
+            var model = new ModelProviderProduct();
+            model.Id = entity.Id;
 
-		internal static List<ModelProviderProduct> ToModelCollection(this List<EntityProviderProduct> dtoList)
-		{
-			var modelList = new List<ModelProviderProduct>();
+            return model;
+        }
 
-			if (dtoList == null)
-				return modelList;
+        /// <summary>
+        /// To the model collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
+        internal static List<ModelProviderProduct> ToModelCollection(this List<EntityProviderProduct> dtoList)
+        {
+            var modelList = new List<ModelProviderProduct>();
 
-			foreach (var dto in dtoList)
-			{
-				modelList.Add(dto.ToModel());
-			}
+            if (dtoList == null)
+                return modelList;
 
-			return modelList;
-		}		
+            foreach (var dto in dtoList)
+            {
+                modelList.Add(dto.ToModel());
+            }
 
+            return modelList;
+        }
+
+        /// <summary>
+        /// To the entity.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         internal static EntityProviderProduct ToEntity(this ModelProviderProduct model)
         {
             var entity = new EntityProviderProduct();
@@ -356,6 +456,11 @@ namespace Mancoba.Sompisi.Data
             return entity;
         }
 
+        /// <summary>
+        /// To the entity collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
         internal static List<EntityProviderProduct> ToEntityCollection(this List<ModelProviderProduct> dtoList)
         {
             var modelList = new List<EntityProviderProduct>();
@@ -374,8 +479,13 @@ namespace Mancoba.Sompisi.Data
         #endregion
 
         #region Province
-       
-		internal static ModelProvince ToModel(this EntityProvince entity)
+
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        internal static ModelProvince ToModel(this EntityProvince entity)
 		{
 			var model = new ModelProvince();
 			model.Id = entity.Id;
@@ -385,7 +495,12 @@ namespace Mancoba.Sompisi.Data
 			return model;
 		}
 
-		internal static List<ModelProvince> ToModelCollection(this List<EntityProvince> dtoList)
+        /// <summary>
+        /// To the model collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
+        internal static List<ModelProvince> ToModelCollection(this List<EntityProvince> dtoList)
 		{
 			var modelList = new List<ModelProvince>();
 
@@ -399,12 +514,17 @@ namespace Mancoba.Sompisi.Data
 
 			return modelList;
 		}
-        
-		#endregion
 
-		#region Town
-		
-		internal static ModelTown ToModel(this EntityTown entity)
+        #endregion
+
+        #region Town
+
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        internal static ModelTown ToModel(this EntityTown entity)
 		{
 			var model = new ModelTown();
 			model.Id = entity.Id;
@@ -413,8 +533,13 @@ namespace Mancoba.Sompisi.Data
 
 			return model;
 		}
-		
-		internal static List<ModelTown> ToModelCollection(this List<EntityTown> dtoList)
+
+        /// <summary>
+        /// To the model collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
+        internal static List<ModelTown> ToModelCollection(this List<EntityTown> dtoList)
 		{
 			var modelList = new List<ModelTown>();
 
@@ -429,11 +554,16 @@ namespace Mancoba.Sompisi.Data
 			return modelList;
 		}
 
-		#endregion
+        #endregion
 
-		#region Suburb	
-        
-		internal static ModelSuburb ToModel(this EntitySuburb entity)
+        #region Suburb	
+
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        internal static ModelSuburb ToModel(this EntitySuburb entity)
 		{
 			var model = new ModelSuburb();
 			model.Id = entity.Id;
@@ -443,26 +573,36 @@ namespace Mancoba.Sompisi.Data
 			return model;
 		}
 
-		internal static List<ModelSuburb> ToModelCollection(this List<EntitySuburb> dtoList)
-		{
-			var modelList = new List<ModelSuburb>();
+        /// <summary>
+        /// To the model collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
+        internal static List<ModelSuburb> ToModelCollection(this List<EntitySuburb> dtoList)
+        {
+            var modelList = new List<ModelSuburb>();
 
-			if (dtoList == null)
-				return modelList;
+            if (dtoList == null)
+                return modelList;
 
-			foreach (var dto in dtoList)
-			{
-				modelList.Add(dto.ToModel());
-			}
+            foreach (var dto in dtoList)
+            {
+                modelList.Add(dto.ToModel());
+            }
 
-			return modelList;
-		}
+            return modelList;
+        }
 
-		#endregion
+        #endregion
 
-		#region Street		
+        #region Street		
 
-		internal static ModelStreet ToModel(this EntityStreet entity)
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        internal static ModelStreet ToModel(this EntityStreet entity)
 		{
 			var model = new ModelStreet();
 			model.Id = entity.Id;
@@ -472,7 +612,12 @@ namespace Mancoba.Sompisi.Data
 			return model;
 		}
 
-		internal static List<ModelStreet> ToModelCollection(this List<EntityStreet> dtoList)
+        /// <summary>
+        /// To the model collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
+        internal static List<ModelStreet> ToModelCollection(this List<EntityStreet> dtoList)
 		{
 			var modelList = new List<ModelStreet>();
 
@@ -491,6 +636,11 @@ namespace Mancoba.Sompisi.Data
 
         #region Application
 
+        /// <summary>
+        /// To the model collection.
+        /// </summary>
+        /// <param name="dtoList">The dto list.</param>
+        /// <returns></returns>
         internal static List<ModelApplication> ToModelCollection(this List<EntityApplication> dtoList)
         {
             var modelList = new List<ModelApplication>();
@@ -506,6 +656,11 @@ namespace Mancoba.Sompisi.Data
             return modelList;
         }
 
+        /// <summary>
+        /// To the model.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         internal static ModelApplication ToModel(this EntityApplication entity)
         {
             return new ModelApplication
@@ -525,6 +680,11 @@ namespace Mancoba.Sompisi.Data
             };
         }
 
+        /// <summary>
+        /// To the entity.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         internal static EntityApplication ToEntity(this ModelApplication model)
         {
             return new EntityApplication

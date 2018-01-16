@@ -6,6 +6,9 @@ namespace Mancoba.Sompisi.Core.Validators
 {
     public class SentSearchValidator : AbstractValidator<SentSearchViewModel>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SentSearchValidator"/> class.
+        /// </summary>
         public SentSearchValidator()
         {
             RuleFor(r => r.SearchText).NotEmpty().WithMessage(LanguageResolver.SearchNoTextError);

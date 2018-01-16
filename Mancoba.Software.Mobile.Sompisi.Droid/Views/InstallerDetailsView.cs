@@ -23,7 +23,14 @@ namespace Mancoba.Sompisi.Droid.Views
 		private ProductItemAdapter _adapter;
 		private View _view;
 
-		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
+        /// <summary>
+        /// Called when [create view].
+        /// </summary>
+        /// <param name="inflater">The inflater.</param>
+        /// <param name="container">The container.</param>
+        /// <param name="savedInstanceState">State of the saved instance.</param>
+        /// <returns></returns>
+        public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
 		{
 			HasOptionsMenu = true;
 			base.OnCreateView (inflater, container, savedInstanceState);
@@ -41,16 +48,21 @@ namespace Mancoba.Sompisi.Droid.Views
 
 			return _view;
 		}
-
-
-	    public override void OnResume()
+        
+        /// <summary>
+        /// Called when [resume].
+        /// </summary>
+        public override void OnResume()
 	    {
 	        base.OnResume();
 
 	        Task.Run(async () => { await ViewModel.GetInstallerDetails(); });                      
 	    }
 
-	    public  void SetListViewHeightBasedOnChildren ( )
+        /// <summary>
+        /// Sets the ListView height based on children.
+        /// </summary>
+        public void SetListViewHeightBasedOnChildren ( )
 		{			 
 			int desiredWidth = View.MeasureSpec.MakeMeasureSpec(_listView.Width,  MeasureSpecMode.Unspecified);
 			int totalHeight = 0;
@@ -86,6 +98,7 @@ namespace Mancoba.Sompisi.Droid.Views
 				}
 			}
 		}
+
 		#endregion
 	}
 }

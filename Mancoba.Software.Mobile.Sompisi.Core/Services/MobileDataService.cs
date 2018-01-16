@@ -57,11 +57,14 @@ namespace Mancoba.Sompisi.Core.Services
 		//private IUserSettings _userSettings;
 		private readonly IMancobaMobileDataApi _mobileDataApi;
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		public MobileDataService()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MobileDataService"/> class.
+        /// </summary>
+        public MobileDataService()
 		{
            // _userSettings = Mvx.Resolve<IUserSettings>();
             _mobileDataApi = Mvx.Resolve<IMancobaMobileDataApi>();
@@ -93,11 +96,15 @@ namespace Mancoba.Sompisi.Core.Services
 			}
 		}
 
-		#endregion
+        #endregion
 
-		#region Auth
+        #region Auth
 
-		public async Task<bool> Ping()
+        /// <summary>
+        /// Pings this instance.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> Ping()
 		{			
 			try
 			{
@@ -111,7 +118,14 @@ namespace Mancoba.Sompisi.Core.Services
 			return false;
 		}
 
-		public async Task<bool> Login(string username, string password, bool isRetry = false)
+        /// <summary>
+        /// Logins the specified username.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        /// <param name="isRetry">if set to <c>true</c> [is retry].</param>
+        /// <returns></returns>
+        public async Task<bool> Login(string username, string password, bool isRetry = false)
 		{
 			if (!IsInternetConnected)
 			{
@@ -141,6 +155,10 @@ namespace Mancoba.Sompisi.Core.Services
 			return false;
 		}
 
+        /// <summary>
+        /// Checks the in.
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> CheckIn()
         {
             try
@@ -155,6 +173,10 @@ namespace Mancoba.Sompisi.Core.Services
             return false;
         }
 
+        /// <summary>
+        /// Checks the out.
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> CheckOut()
         {
             try
@@ -169,6 +191,10 @@ namespace Mancoba.Sompisi.Core.Services
             return false;
         }
 
+        /// <summary>
+        /// Tries the automatic login.
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> TryAutoLogin()
 		{
 			var userSettings = Mvx.Resolve<IUserSettings>();
@@ -176,12 +202,21 @@ namespace Mancoba.Sompisi.Core.Services
 
 		}
 
-	    public async Task<bool> SaveSystemUser(ModelSystemUser user)
+        /// <summary>
+        /// Saves the system user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
+        public async Task<bool> SaveSystemUser(ModelSystemUser user)
 	    {
 	        return await Task.Run(() => true);
 	    }
 
-		public async Task<ModelSystemUser> GetSystemUser()
+        /// <summary>
+        /// Gets the system user.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ModelSystemUser> GetSystemUser()
 		{
 			return await _mobileDataApi.GetSystemUser();
 		}
@@ -190,9 +225,14 @@ namespace Mancoba.Sompisi.Core.Services
 
 		#region Provider	
 
-		private List<ModelProvider> _providers;                       
+		private List<ModelProvider> _providers;
 
-		public async Task<ModelProvider> GetProvider(string id)
+        /// <summary>
+        /// Gets the provider.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<ModelProvider> GetProvider(string id)
 		{
 		    await GetProviders();
 
@@ -213,6 +253,10 @@ namespace Mancoba.Sompisi.Core.Services
 		    });
 		}
 
+        /// <summary>
+        /// Gets the providers.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelProvider>> GetProviders()
         {
             try
@@ -228,7 +272,12 @@ namespace Mancoba.Sompisi.Core.Services
             return _providers;
         }
 
-	    public async Task<List<ModelProvider>> FindProviders(string searchText)
+        /// <summary>
+        /// Finds the providers.
+        /// </summary>
+        /// <param name="searchText">The search text.</param>
+        /// <returns></returns>
+        public async Task<List<ModelProvider>> FindProviders(string searchText)
 		{
             await GetProviders();
 
@@ -248,6 +297,11 @@ namespace Mancoba.Sompisi.Core.Services
             return new List<ModelProvider>();
         }
 
+        /// <summary>
+        /// Favourites the provider.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<bool> FavouriteProvider(string id)
 	    {
             try
@@ -277,8 +331,13 @@ namespace Mancoba.Sompisi.Core.Services
 
         #region Installer	
         
-        private List<ModelInstaller> _installers;        
+        private List<ModelInstaller> _installers;
 
+        /// <summary>
+        /// Gets the installer.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelInstaller> GetInstaller(string id)
         {
             await GetInstallers();
@@ -295,6 +354,10 @@ namespace Mancoba.Sompisi.Core.Services
             return null;
         }
 
+        /// <summary>
+        /// Gets the installers.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelInstaller>> GetInstallers()
         {
             try
@@ -310,6 +373,11 @@ namespace Mancoba.Sompisi.Core.Services
             return _installers;
         }
 
+        /// <summary>
+        /// Favourites the installer.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<bool> FavouriteInstaller(string id)
         {
             try
@@ -335,6 +403,11 @@ namespace Mancoba.Sompisi.Core.Services
             return true;
         }
 
+        /// <summary>
+        /// Finds the installers.
+        /// </summary>
+        /// <param name="searchText">The search text.</param>
+        /// <returns></returns>
         public async Task<List<ModelInstaller>> FindInstallers(string searchText)
         {
             await GetInstallers();
@@ -362,24 +435,33 @@ namespace Mancoba.Sompisi.Core.Services
         private List<ModelProviderProduct> _providerProducts;
         private List<ModelProduct> _products;
 
-	    public async Task<ModelProduct> GetProduct(string id)
-	    {
-	        await GetProducts();
+        /// <summary>
+        /// Gets the product.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<ModelProduct> GetProduct(string id)
+        {
+            await GetProducts();
 
-	        try
-	        {
-	            if (_products != null && _products.Count > 0)
-	                return _products.FirstOrDefault(c => c.Id == id);
-	        }
-	        catch (Exception ex)
-	        {
-	            ErrorHandler.HandleError(ex);
-	        }
+            try
+            {
+                if (_products != null && _products.Count > 0)
+                    return _products.FirstOrDefault(c => c.Id == id);
+            }
+            catch (Exception ex)
+            {
+                ErrorHandler.HandleError(ex);
+            }
 
-	        return null;
-	    }
+            return null;
+        }
 
-	    public async Task<List<ModelProduct>> GetProducts()
+        /// <summary>
+        /// Gets the products.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<ModelProduct>> GetProducts()
 		{
 			try
 			{
@@ -394,6 +476,10 @@ namespace Mancoba.Sompisi.Core.Services
 			return _products;
 		}
 
+        /// <summary>
+        /// Gets the provider products.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelProviderProduct>> GetProviderProducts()
         {
             try
@@ -409,6 +495,11 @@ namespace Mancoba.Sompisi.Core.Services
             return _providerProducts;
         }
 
+        /// <summary>
+        /// Gets the provider product.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelProviderProduct> GetProviderProduct(string id)
         {
             await GetProviderProducts();
@@ -429,28 +520,33 @@ namespace Mancoba.Sompisi.Core.Services
             });
         }
 
+        /// <summary>
+        /// Gets the provider products.
+        /// </summary>
+        /// <param name="providerId">The provider identifier.</param>
+        /// <returns></returns>
         public async Task<List<ModelProviderProduct>> GetProviderProducts(string providerId)
-	    {
-	        await GetProviderProducts();
+        {
+            await GetProviderProducts();
 
-	        return await  Task.Run(() =>
-	        {
-	            try
-	            {
+            return await Task.Run(() =>
+           {
+               try
+               {
 
-	                if (_providerProducts != null && _providerProducts.Count > 0)
-	                    return _providerProducts.Where(c => c.ProviderId == providerId).ToList();
-	            }
-	            catch (Exception ex)
-	            {
-	                ErrorHandler.HandleError(ex);
-	            }
+                   if (_providerProducts != null && _providerProducts.Count > 0)
+                       return _providerProducts.Where(c => c.ProviderId == providerId).ToList();
+               }
+               catch (Exception ex)
+               {
+                   ErrorHandler.HandleError(ex);
+               }
 
-	            return new List<ModelProviderProduct>();
-	        });
-	    }
+               return new List<ModelProviderProduct>();
+           });
+        }
 
-	    #endregion
+        #endregion
 
         #region Addresses
 
@@ -464,7 +560,11 @@ namespace Mancoba.Sompisi.Core.Services
 		private static List<DropDownListItem> _suburbDropDownList;
 		private static List<DropDownListItem> _streetDropDownList;
 
-		public async Task<List<ModelProvince>> GetProvinces()
+        /// <summary>
+        /// Gets the provinces.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<ModelProvince>> GetProvinces()
 		{
 			if (_provinceList == null)
 				_provinceList = new List<ModelProvince>();
@@ -495,6 +595,11 @@ namespace Mancoba.Sompisi.Core.Services
 			return _provinceList.OrderBy(c => c.Name).ToList();
 		}
 
+        /// <summary>
+        /// Gets the province.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelProvince> GetProvince(string id)
         {
             try
@@ -525,17 +630,26 @@ namespace Mancoba.Sompisi.Core.Services
             return null;
         }
 
+        /// <summary>
+        /// Gets the drop down provinces.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<DropDownListItem>> GetDropDownProvinces()
-		{
-			if (_provinceDropDownList == null)
-				_provinceDropDownList = new List<DropDownListItem>();
+        {
+            if (_provinceDropDownList == null)
+                _provinceDropDownList = new List<DropDownListItem>();
 
-			if (_provinceDropDownList.Count == 0)
-				await GetProvinces();
+            if (_provinceDropDownList.Count == 0)
+                await GetProvinces();
 
-			return _provinceDropDownList;
-		}
+            return _provinceDropDownList;
+        }
 
+        /// <summary>
+        /// Gets the town.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelTown> GetTown(string id)
         {
             try
@@ -566,6 +680,10 @@ namespace Mancoba.Sompisi.Core.Services
             return null;
         }
 
+        /// <summary>
+        /// Gets the towns.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelTown>> GetTowns()
 		{
 			await GetProvinces();
@@ -600,7 +718,12 @@ namespace Mancoba.Sompisi.Core.Services
 			return _townList.OrderBy(c => c.Name).ToList();
 		}
 
-		public async Task<List<ModelTown>> GetTownsByProvice(string provinceId)
+        /// <summary>
+        /// Gets the towns by provice.
+        /// </summary>
+        /// <param name="provinceId">The province identifier.</param>
+        /// <returns></returns>
+        public async Task<List<ModelTown>> GetTownsByProvice(string provinceId)
 		{
 			await GetTowns();
 
@@ -616,7 +739,12 @@ namespace Mancoba.Sompisi.Core.Services
 			return new List<ModelTown>();
 		}
 
-		public async Task<List<DropDownListItem>> GetDropDownTownsByProvice(string provinceId)
+        /// <summary>
+        /// Gets the drop down towns by provice.
+        /// </summary>
+        /// <param name="provinceId">The province identifier.</param>
+        /// <returns></returns>
+        public async Task<List<DropDownListItem>> GetDropDownTownsByProvice(string provinceId)
 		{
 			if (_townDropDownList == null)
 				_townDropDownList = new List<DropDownListItem>();
@@ -627,6 +755,11 @@ namespace Mancoba.Sompisi.Core.Services
 			return _townDropDownList.Where(c => string.IsNullOrWhiteSpace(c.ParentId) || c.ParentId == provinceId).ToList();
 		}
 
+        /// <summary>
+        /// Gets the suburb.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelSuburb> GetSuburb(string id)
         {
             try
@@ -657,6 +790,10 @@ namespace Mancoba.Sompisi.Core.Services
             return null;
         }
 
+        /// <summary>
+        /// Gets the suburbs.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelSuburb>> GetSuburbs()
 		{
 			await GetTowns();
@@ -690,7 +827,12 @@ namespace Mancoba.Sompisi.Core.Services
 			return _suburbList.OrderBy(c => c.Name).ToList();
 		}
 
-		public async Task<List<ModelSuburb>> GetSuburbsByTown(string townId)
+        /// <summary>
+        /// Gets the suburbs by town.
+        /// </summary>
+        /// <param name="townId">The town identifier.</param>
+        /// <returns></returns>
+        public async Task<List<ModelSuburb>> GetSuburbsByTown(string townId)
 		{
 			await GetSuburbs();
 
@@ -706,7 +848,12 @@ namespace Mancoba.Sompisi.Core.Services
 			return new List<ModelSuburb>();
 		}
 
-		public async Task<List<DropDownListItem>> GetDropDownSuburbsByTown(string townId)
+        /// <summary>
+        /// Gets the drop down suburbs by town.
+        /// </summary>
+        /// <param name="townId">The town identifier.</param>
+        /// <returns></returns>
+        public async Task<List<DropDownListItem>> GetDropDownSuburbsByTown(string townId)
 		{
 			if (_suburbDropDownList == null)
 				_suburbDropDownList = new List<DropDownListItem>();
@@ -717,7 +864,12 @@ namespace Mancoba.Sompisi.Core.Services
 			return _suburbDropDownList.Where(c => string.IsNullOrWhiteSpace(c.ParentId) || c.ParentId == townId).ToList();
 		}
 
-	    public async Task<ModelStreet> GetStreet(string id)
+        /// <summary>
+        /// Gets the street.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public async Task<ModelStreet> GetStreet(string id)
 	    {
             try
             {
@@ -747,6 +899,10 @@ namespace Mancoba.Sompisi.Core.Services
             return null;
         }
 
+        /// <summary>
+        /// Gets the streets.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelStreet>> GetStreets()
 		{
 			await GetSuburbs();
@@ -780,7 +936,12 @@ namespace Mancoba.Sompisi.Core.Services
 			return _streetList.OrderBy(c => c.Name).ToList();
 		}
 
-		public async Task<List<ModelStreet>> GetStreetsBySuburb(string suburbId)
+        /// <summary>
+        /// Gets the streets by suburb.
+        /// </summary>
+        /// <param name="suburbId">The suburb identifier.</param>
+        /// <returns></returns>
+        public async Task<List<ModelStreet>> GetStreetsBySuburb(string suburbId)
 		{
 			await GetStreets();
 
@@ -796,7 +957,12 @@ namespace Mancoba.Sompisi.Core.Services
 			return new List<ModelStreet>();
 		}
 
-		public async Task<List<DropDownListItem>> GetDropDownStreetsBySuburb(string suburbId)
+        /// <summary>
+        /// Gets the drop down streets by suburb.
+        /// </summary>
+        /// <param name="suburbId">The suburb identifier.</param>
+        /// <returns></returns>
+        public async Task<List<DropDownListItem>> GetDropDownStreetsBySuburb(string suburbId)
 		{
 			if (_streetDropDownList == null)
 				_streetDropDownList = new List<DropDownListItem>();
@@ -813,6 +979,11 @@ namespace Mancoba.Sompisi.Core.Services
 
         private List<ModelApplication> _applications;
 
+        /// <summary>
+        /// Saves the application.
+        /// </summary>
+        /// <param name="application">The application.</param>
+        /// <returns></returns>
         public async Task<bool> SaveApplication(ModelApplication application)
         {
             try
@@ -827,6 +998,10 @@ namespace Mancoba.Sompisi.Core.Services
             return true;
         }
 
+        /// <summary>
+        /// Gets the sent applications.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ModelApplication>> GetSentApplications()
         {
             try
@@ -842,6 +1017,11 @@ namespace Mancoba.Sompisi.Core.Services
             return _applications;
         }
 
+        /// <summary>
+        /// Gets the sent application.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<ModelApplication> GetSentApplication(string id)
         {
             await GetSentApplications();
@@ -857,6 +1037,11 @@ namespace Mancoba.Sompisi.Core.Services
             return null;
         }
 
+        /// <summary>
+        /// Finds the applications.
+        /// </summary>
+        /// <param name="searchText">The search text.</param>
+        /// <returns></returns>
         public async Task<List<ModelApplication>> FindApplications(string searchText)
         {
             await GetSentApplications();

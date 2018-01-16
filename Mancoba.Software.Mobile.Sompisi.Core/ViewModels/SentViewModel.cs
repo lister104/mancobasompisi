@@ -11,12 +11,20 @@ namespace Mancoba.Sompisi.Core.ViewModels
     {
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SentViewModel"/> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
         public SentViewModel(IMvxMessenger messenger)
             : base(messenger)
         {
 
         }
 
+        /// <summary>
+        /// Initializes the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public void Init(DraftsViewModel item)
         {
             //there will be a ShowList() here

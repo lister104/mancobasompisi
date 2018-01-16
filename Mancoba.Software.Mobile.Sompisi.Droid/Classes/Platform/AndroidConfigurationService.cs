@@ -8,12 +8,20 @@ namespace Mancoba.Sompisi.Droid.Classes.Platform
 {
 	public class AndroidConfigurationService : IApplicationConfigurationService
 	{
-		public PlatformTypeEnum GetPlatformType()
+        /// <summary>
+        /// Gets the type of the platform.
+        /// </summary>
+        /// <returns></returns>
+        public PlatformTypeEnum GetPlatformType()
 		{
 			return PlatformTypeEnum.Android;
 		}
 
-		public DeviceTypeEnum GetDeviceType()
+        /// <summary>
+        /// Gets the type of the device.
+        /// </summary>
+        /// <returns></returns>
+        public DeviceTypeEnum GetDeviceType()
 		{
 			// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
 			return (Application.Context.Resources.Configuration.ScreenLayout & ScreenLayout.SizeMask) >= ScreenLayout.SizeLarge
@@ -21,7 +29,11 @@ namespace Mancoba.Sompisi.Droid.Classes.Platform
 					                                                                                                     : DeviceTypeEnum.Phone;
 		}
 
-		public string GetDeviceKey()
+        /// <summary>
+        /// Gets the device key.
+        /// </summary>
+        /// <returns></returns>
+        public string GetDeviceKey()
 		{
 			TelephonyManager tm = (TelephonyManager) Application.Context.GetSystemService(Android.Content.Context.TelephonyService);
 			return  tm.DeviceId;

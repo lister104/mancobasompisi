@@ -6,7 +6,12 @@ namespace Mancoba.Sompisi.Core.Messages
 	{
 		public bool NavigationBarHidden;
 
-		public NavigationBarHiddenMessage(object sender, bool navigationBarHidden)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NavigationBarHiddenMessage"/> class.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="navigationBarHidden">if set to <c>true</c> [navigation bar hidden].</param>
+        public NavigationBarHiddenMessage(object sender, bool navigationBarHidden)
 			: base(sender)
 		{
 			NavigationBarHidden = navigationBarHidden;

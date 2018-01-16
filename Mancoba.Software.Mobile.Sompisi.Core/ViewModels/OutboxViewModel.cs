@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MvvmCross.Plugins.Messenger;
 
 namespace Mancoba.Sompisi.Core.ViewModels
@@ -13,12 +9,20 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OutboxViewModel" /> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
         public OutboxViewModel(IMvxMessenger messenger)
-            : base(messenger)
+                    : base(messenger)
         {
 
         }
 
+        /// <summary>
+        /// Initializes the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public void Init(DraftsViewModel item)
         {
 
@@ -28,6 +32,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         #region Public Methods
 
+        /// <summary>
+        /// Gets the outbox details.
+        /// </summary>
+        /// <returns></returns>
         public async Task GetOutboxDetails()
         {
             _isOutboxViewLoaded = false;
@@ -42,6 +50,9 @@ namespace Mancoba.Sompisi.Core.ViewModels
             CheckLoadingStatus();
         }
 
+        /// <summary>
+        /// Checks the loading status.
+        /// </summary>
         private void CheckLoadingStatus()
         {
             IsLoading = true;

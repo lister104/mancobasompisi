@@ -7,7 +7,15 @@ namespace Mancoba.Sompisi.Utils.Helpers
 
 	internal sealed class Timer : CancellationTokenSource
 	{
-		internal Timer(Action<object> callback, object state, int millisecondsDueTime, int millisecondsPeriod, bool waitForCallbackBeforeNextPeriod = true)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Timer"/> class.
+        /// </summary>
+        /// <param name="callback">The callback.</param>
+        /// <param name="state">The state.</param>
+        /// <param name="millisecondsDueTime">The milliseconds due time.</param>
+        /// <param name="millisecondsPeriod">The milliseconds period.</param>
+        /// <param name="waitForCallbackBeforeNextPeriod">if set to <c>true</c> [wait for callback before next period].</param>
+        internal Timer(Action<object> callback, object state, int millisecondsDueTime, int millisecondsPeriod, bool waitForCallbackBeforeNextPeriod = true)
 		{
 			try
 			{
@@ -42,7 +50,11 @@ namespace Mancoba.Sompisi.Utils.Helpers
 			}
 		}
 
-		protected override void Dispose(bool disposing)
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected override void Dispose(bool disposing)
 		{
 			if (disposing)
 				Cancel();
@@ -55,7 +67,12 @@ namespace Mancoba.Sompisi.Utils.Helpers
 
 	public sealed class StopWatch : CancellationTokenSource, IDisposable
 	{
-		public StopWatch(TimerCallback callback, object state)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StopWatch"/> class.
+        /// </summary>
+        /// <param name="callback">The callback.</param>
+        /// <param name="state">The state.</param>
+        public StopWatch(TimerCallback callback, object state)
 		{
 			Task.Delay(0, Token).ContinueWith(async (t, s) =>
 				{
@@ -75,7 +92,10 @@ namespace Mancoba.Sompisi.Utils.Helpers
 				TaskScheduler.Default);
 		}
 
-		public new void Dispose() { base.Cancel(); }
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        public new void Dispose() { base.Cancel(); }
 
 		public int Count{ get; set; } 
 	}

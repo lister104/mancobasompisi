@@ -12,6 +12,12 @@ namespace Mancoba.Sompisi.Droid.Classes.Platform
     {
         bool _hasConnection;
 
+        /// <summary>
+        /// Determines whether [has network connection].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [has network connection]; otherwise, <c>false</c>.
+        /// </returns>
         public bool HasNetworkConnection()
         {
             try
@@ -40,11 +46,19 @@ namespace Mancoba.Sompisi.Droid.Classes.Platform
             return false;
         }
 
+        /// <summary>
+        /// Uses the local caching.
+        /// </summary>
+        /// <returns></returns>
         public bool UseLocalCaching()
         {
             return true;
         }
 
+        /// <summary>
+        /// Notifies the listeners.
+        /// </summary>
+        /// <param name="connectivity">if set to <c>true</c> [connectivity].</param>
         void NotifyListeners(bool connectivity)
         {
             if (connectivity == _hasConnection)

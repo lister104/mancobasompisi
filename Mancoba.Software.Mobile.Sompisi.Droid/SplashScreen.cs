@@ -10,12 +10,18 @@ namespace Mancoba.Sompisi.Droid
     [Activity(MainLauncher = true, Icon = "@drawable/ic_launcher", Theme = "@style/SplashTheme", NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : MvxSplashScreenActivity
     {
-        public SplashScreen()
-            : base(Resource.Layout.SplashScreen)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SplashScreen"/> class.
+        /// </summary>
+        public SplashScreen() : base(Resource.Layout.SplashScreen)
         {
 
         }
 
+        /// <summary>
+        /// Called when [create].
+        /// </summary>
+        /// <param name="bundle">The bundle.</param>
         protected override void OnCreate(Android.OS.Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -40,6 +46,9 @@ namespace Mancoba.Sompisi.Droid
 
         }
 
+        /// <summary>
+        /// Called when [resume].
+        /// </summary>
         protected override void OnResume()
         {
             base.OnResume();

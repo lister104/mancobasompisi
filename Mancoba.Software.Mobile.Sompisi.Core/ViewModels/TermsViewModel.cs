@@ -9,11 +9,20 @@ namespace Mancoba.Sompisi.Core.ViewModels
 {
 	public class TermsViewModel : MvxViewModel
 	{
-		public TermsViewModel()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TermsViewModel"/> class.
+        /// </summary>
+        public TermsViewModel()
 		{			
 			CloseCommand = new MvxAsyncCommand(CloseCommandHandler);
 		}
-		public string TermsAndConditionsTitle
+        /// <summary>
+        /// Gets the terms and conditions title.
+        /// </summary>
+        /// <value>
+        /// The terms and conditions title.
+        /// </value>
+        public string TermsAndConditionsTitle
 		{
 			get
 			{
@@ -21,7 +30,13 @@ namespace Mancoba.Sompisi.Core.ViewModels
 			}
 		}
 
-		public string TermsAndConditionsText
+        /// <summary>
+        /// Gets the terms and conditions text.
+        /// </summary>
+        /// <value>
+        /// The terms and conditions text.
+        /// </value>
+        public string TermsAndConditionsText
 		{
 			get
 			{
@@ -54,14 +69,24 @@ namespace Mancoba.Sompisi.Core.ViewModels
 			}
 		}
 
-		public string TermsOk
+        /// <summary>
+        /// Gets the terms ok.
+        /// </summary>
+        /// <value>
+        /// The terms ok.
+        /// </value>
+        public string TermsOk
 		{
 			get { return LanguageResolver.Ok; }
 		}
 
 		public IMvxAsyncCommand CloseCommand { get; }
 
-		public async Task CloseCommandHandler()
+        /// <summary>
+        /// Closes the command handler.
+        /// </summary>
+        /// <returns></returns>
+        public async Task CloseCommandHandler()
 		{
 			Close(this);
 		}

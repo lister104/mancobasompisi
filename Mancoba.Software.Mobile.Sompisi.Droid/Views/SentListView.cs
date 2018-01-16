@@ -26,6 +26,9 @@ namespace Mancoba.Sompisi.Droid.Views
     [Register("mancoba.sompisi.droid.views.SentListView")]
     public class SentListView : MvxFragment, View.IOnClickListener
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SentListView"/> class.
+        /// </summary>
         public SentListView()
         {
             RetainInstance = true;
@@ -44,6 +47,11 @@ namespace Mancoba.Sompisi.Droid.Views
 
         public NavigationFrom NavigationFrom { get; set; }
 
+        /// <summary>
+        /// Creates the view.
+        /// </summary>
+        /// <param name="layoutId">The layout identifier.</param>
+        /// <returns></returns>
         protected View CreateView(int layoutId)
         {
             HasOptionsMenu = true;
@@ -76,6 +84,9 @@ namespace Mancoba.Sompisi.Droid.Views
             return _view;
         }
 
+        /// <summary>
+        /// Resumes this instance.
+        /// </summary>
         protected void Resume()
         {
             base.OnResume();
@@ -87,6 +98,11 @@ namespace Mancoba.Sompisi.Droid.Views
             });
         }
 
+        /// <summary>
+        /// Creates the options menu.
+        /// </summary>
+        /// <param name="menu">The menu.</param>
+        /// <param name="inflater">The inflater.</param>
         public void CreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             //_editItem = menu.Add (Menu.None, Resource.Id.action_selections, Menu.None, "Edit");
@@ -106,6 +122,9 @@ namespace Mancoba.Sompisi.Droid.Views
 
         #region Private Methods
 
+        /// <summary>
+        /// Shows the search bar.
+        /// </summary>
         private void ShowSearchBar()
         {
             _searchBarIsVisible = true;
@@ -138,6 +157,9 @@ namespace Mancoba.Sompisi.Droid.Views
             _countText.StartAnimation(countAnim);
         }
 
+        /// <summary>
+        /// Hides the search bar.
+        /// </summary>
         private void HideSearchBar()
         {
             _searchBarIsVisible = false;
@@ -169,6 +191,11 @@ namespace Mancoba.Sompisi.Droid.Views
             _listview.StartAnimation(anim);
         }
 
+        /// <summary>
+        /// Handles the scroll.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="AbsListView.ScrollEventArgs"/> instance containing the event data.</param>
         void HandleScroll(object sender, AbsListView.ScrollEventArgs e)
         {
             //if (_scrollDistance <= 1) {
@@ -190,6 +217,11 @@ namespace Mancoba.Sompisi.Droid.Views
 
         int _lastTopVisibleItem;
 
+        /// <summary>
+        /// Handles the scroll state changed.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="AbsListView.ScrollStateChangedEventArgs"/> instance containing the event data.</param>
         void HandleScrollStateChanged(object sender, AbsListView.ScrollStateChangedEventArgs e)
         {
             //if (e.View.Id == _listview.Id) {
@@ -221,6 +253,10 @@ namespace Mancoba.Sompisi.Droid.Views
             //}
         }
 
+        /// <summary>
+        /// Called when [click].
+        /// </summary>
+        /// <param name="v">The v.</param>
         public void OnClick(View v)
         {
             OnOptionsItemSelected(_editCancelItem);
@@ -256,15 +292,25 @@ namespace Mancoba.Sompisi.Droid.Views
                 _cancelTexView.Text = EditMode ? LanguageResolver.Cancel : LanguageResolver.Edit;
             }
         }
-        
+
         #endregion
 
+        /// <summary>
+        /// Called when [create view].
+        /// </summary>
+        /// <param name="inflater">The inflater.</param>
+        /// <param name="container">The container.</param>
+        /// <param name="savedInstanceState">State of the saved instance.</param>
+        /// <returns></returns>
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Android.OS.Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             return CreateView(Resource.Layout.sentlistview);
         }
 
+        /// <summary>
+        /// Called when [resume].
+        /// </summary>
         public override void OnResume()
         {
             Resume();
@@ -274,6 +320,11 @@ namespace Mancoba.Sompisi.Droid.Views
             //});
         }
 
+        /// <summary>
+        /// Called when [create options menu].
+        /// </summary>
+        /// <param name="menu">The menu.</param>
+        /// <param name="inflater">The inflater.</param>
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
             CreateOptionsMenu(menu, inflater);

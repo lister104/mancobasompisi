@@ -18,11 +18,17 @@ namespace Mancoba.Sompisi.Core.ViewModels
         private string _countryName;
         private string _postalCode;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DraftItemViewModel"/> class.
+        /// </summary>
         public DraftItemViewModel()
         {
             Initialise();
         }
 
+        /// <summary>
+        /// Initialises this instance.
+        /// </summary>
         private void Initialise()
         {
             _firstName = "";

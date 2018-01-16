@@ -31,17 +31,28 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DraftsViewModel"/> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
         public DraftsViewModel(IMvxMessenger messenger)
             : base(messenger)
         {
 
         }
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         public void Init()
         {
 
         }
 
+        /// <summary>
+        /// Initializes the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public void Init(DraftItemViewModel item)
         {
             FirstName = item.FirstName;
@@ -205,6 +216,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         private IMvxAsyncCommand _backCommand;
 
+        /// <summary>
+        /// Gets the back command.
+        /// </summary>
+        /// <value>
+        /// The back command.
+        /// </value>
         public IMvxAsyncCommand BackCommand
         {
             get
@@ -214,6 +231,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Does the back command.
+        /// </summary>
+        /// <returns></returns>
         private async Task DoBackCommand()
         {
             await Task.Run(() =>
@@ -226,6 +247,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         private IMvxAsyncCommand _saveApplication;
 
+        /// <summary>
+        /// Gets the save application command.
+        /// </summary>
+        /// <value>
+        /// The save application command.
+        /// </value>
         public IMvxAsyncCommand SaveApplicationCommand
         {
             get
@@ -235,6 +262,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Does the save application.
+        /// </summary>
+        /// <returns></returns>
         private async Task DoSaveApplication()
         {
             IsLoading = true;
@@ -247,6 +278,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             });
         }
 
+        /// <summary>
+        /// Populates the application.
+        /// </summary>
+        /// <returns></returns>
         private ModelApplication PopulateApplication()
         {
             return new ModelApplication
@@ -267,6 +302,12 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         private IMvxAsyncCommand _phoneNumberCommand;
 
+        /// <summary>
+        /// Gets the phone number command.
+        /// </summary>
+        /// <value>
+        /// The phone number command.
+        /// </value>
         public IMvxAsyncCommand PhoneNumberCommand
         {
             get
@@ -276,6 +317,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
             }
         }
 
+        /// <summary>
+        /// Does the phone number command.
+        /// </summary>
+        /// <returns></returns>
         private async Task DoPhoneNumberCommand()
         {
             if (string.IsNullOrEmpty(PhoneNumber))
@@ -287,6 +332,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
         #region Public Methods
 
+        /// <summary>
+        /// Gets the draft details.
+        /// </summary>
+        /// <returns></returns>
         public async Task GetDraftDetails()
         {
             _isDraftViewLoaded = false;
@@ -315,6 +364,9 @@ namespace Mancoba.Sompisi.Core.ViewModels
             CheckLoadingStatus();
         }
 
+        /// <summary>
+        /// Checks the loading status.
+        /// </summary>
         private void CheckLoadingStatus()
         {
             IsLoading = true;

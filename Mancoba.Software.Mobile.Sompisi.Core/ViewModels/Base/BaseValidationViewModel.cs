@@ -12,16 +12,26 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 		private bool _isModelValid = true;
 		private IList<ValidationFailure> _validationErrors;
 
-		#endregion
+        #endregion
 
-		protected BaseValidationViewModel(IMvxMessenger messenger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseValidationViewModel"/> class.
+        /// </summary>
+        /// <param name="messenger">The messenger.</param>
+        protected BaseValidationViewModel(IMvxMessenger messenger)
 			: base(messenger)
 		{
 		}
 
-		#region Public Properties
+        #region Public Properties
 
-		public IList<ValidationFailure> ValidationErrors
+        /// <summary>
+        /// Gets or sets the validation errors.
+        /// </summary>
+        /// <value>
+        /// The validation errors.
+        /// </value>
+        public IList<ValidationFailure> ValidationErrors
 		{
 			get { return _validationErrors; }
 			set
@@ -41,11 +51,17 @@ namespace Mancoba.Sompisi.Core.ViewModels.Base
 			}
 		}
 
-		#endregion
+        #endregion
 
-		#region Public Methods
+        #region Public Methods
 
-		public virtual void ValidateModel<T>(AbstractValidator<T> validator, T model)
+        /// <summary>
+        /// Validates the model.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="validator">The validator.</param>
+        /// <param name="model">The model.</param>
+        public virtual void ValidateModel<T>(AbstractValidator<T> validator, T model)
 		{
 			var results = validator.Validate(model);
 			ValidationErrors = results.Errors;

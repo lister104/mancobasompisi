@@ -10,12 +10,21 @@ namespace Mancoba.Sompisi.Utils.Helpers
 	{
 		public static Action<Exception> SendToRaygun { get; set; }
 
-		public static void HandleError(Exception exception)
+        /// <summary>
+        /// Handles the error.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
+        public static void HandleError(Exception exception)
 		{
 			HandleError(null, exception);
 		}
 
-		public static void HandleError(string message, Exception exception)
+        /// <summary>
+        /// Handles the error.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="exception">The exception.</param>
+        public static void HandleError(string message, Exception exception)
 		{
 #if DEBUG
 			try

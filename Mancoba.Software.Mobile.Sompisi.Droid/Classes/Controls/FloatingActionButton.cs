@@ -42,25 +42,52 @@ namespace Mancoba.Sompisi.Droid.Classes.Controls
             set { check = value; }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FloatingActionButton"/> class.
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="b">The b.</param>
         public FloatingActionButton(IntPtr a, Android.Runtime.JniHandleOwnership b) : base(a, b)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FloatingActionButton"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public FloatingActionButton(Context context) : this(context, null, 0, 0)
         {
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FloatingActionButton"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="attrs">The attrs.</param>
         public FloatingActionButton(Context context, IAttributeSet attrs) : this(context, attrs, 0, 0)
         {
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FloatingActionButton"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="attrs">The attrs.</param>
+        /// <param name="defStyleAttr">The definition style attribute.</param>
         public FloatingActionButton(Context context, IAttributeSet attrs, int defStyleAttr) : this(context, attrs, defStyleAttr, 0)
         {
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FloatingActionButton"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="attrs">The attrs.</param>
+        /// <param name="defStyleAttr">The definition style attribute.</param>
+        /// <param name="defStyleRes">The definition style resource.</param>
         public FloatingActionButton(Context context, IAttributeSet attrs, int defStyleAttr, int defStyleRes) : base(context, attrs, defStyleAttr, defStyleRes)
         {
 
@@ -103,6 +130,9 @@ namespace Mancoba.Sompisi.Droid.Classes.Controls
         }
 
         // Sets the checked/unchecked state of the FAB.
+        /// <summary>
+        /// Sets the checked.
+        /// </summary>
         public void SetChecked()
         {
             // If trying to change to the current state, ignore
@@ -132,12 +162,19 @@ namespace Mancoba.Sompisi.Droid.Classes.Controls
             }
         }
 
+        /// <summary>
+        /// Sets the on checked change listener.
+        /// </summary>
+        /// <param name="listener">The listener.</param>
         public void SetOnCheckedChangeListener(IOnCheckedChangeListener listener)
         {
             onCheckedChangeListener = listener;
             Clickable = listener != null;
         }
 
+        /// <summary>
+        /// Does the on check changed.
+        /// </summary>
         public void DoOnCheckChanged()
         {
             if (onCheckedChangeListener != null)
@@ -150,6 +187,10 @@ namespace Mancoba.Sompisi.Droid.Classes.Controls
             void OnCheckedChanged(FloatingActionButton fabView, bool isChecked);
         }
 
+        /// <summary>
+        /// Creates the animator.
+        /// </summary>
+        /// <returns></returns>
         protected Animator CreateAnimator()
         {
             // Calculate the longest distance from the hot spot to the edge of the circle.
@@ -186,6 +227,22 @@ namespace Mancoba.Sompisi.Droid.Classes.Controls
             }
         }
 
+        /// <summary>
+        /// Implement this method to handle touch screen motion events.
+        /// </summary>
+        /// <param name="e">The motion event.</param>
+        /// <returns>
+        /// To be added.
+        /// </returns>
+        /// <remarks>
+        /// <para tool="javadoc-to-mdoc">Implement this method to handle touch screen motion events.</para>
+        /// <para tool="javadoc-to-mdoc">
+        ///   <format type="text/html">
+        ///     <a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent)" target="_blank">[Android Documentation]</a>
+        ///   </format>
+        /// </para>
+        /// </remarks>
+        /// <since version="Added in API level 1" />
         public override bool OnTouchEvent(MotionEvent e)
         {
             if (gestureDetector.OnTouchEvent(e))
@@ -194,16 +251,58 @@ namespace Mancoba.Sompisi.Droid.Classes.Controls
             return base.OnTouchEvent(e);
         }
 
+        /// <summary>
+        /// Determines whether this instance is checked.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this instance is checked; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsChecked()
         {
             return check;
         }
 
+        /// <summary>
+        /// Change the checked state of the view to the inverse of its current state
+        /// </summary>
+        /// <remarks>
+        /// <para tool="javadoc-to-mdoc">Change the checked state of the view to the inverse of its current state
+        /// </para>
+        /// <para tool="javadoc-to-mdoc">
+        ///   <format type="text/html">
+        ///     <a href="http://developer.android.com/reference/android/widget/Checkable.html#toggle()" target="_blank">[Android Documentation]</a>
+        ///   </format>
+        /// </para>
+        /// </remarks>
+        /// <since version="Added in API level 1" />
         public void Toggle()
         {
             SetChecked();
         }
 
+        /// <summary>
+        /// Generate the new <c><see cref="T:Android.Graphics.Drawables.Drawable" /></c> state for
+        /// this view.
+        /// </summary>
+        /// <param name="extraSpace">if non-zero, this is the number of extra entries you
+        /// would like in the returned array in which you can place your own
+        /// states.</param>
+        /// <returns>
+        /// To be added.
+        /// </returns>
+        /// <remarks>
+        /// <para tool="javadoc-to-mdoc">Generate the new <c><see cref="T:Android.Graphics.Drawables.Drawable" /></c> state for
+        /// this view. This is called by the view
+        /// system when the cached Drawable state is determined to be invalid.  To
+        /// retrieve the current state, you should use <c><see cref="M:Android.Views.View.GetDrawableState" /></c>.</para>
+        /// <para tool="javadoc-to-mdoc">
+        ///   <format type="text/html">
+        ///     <a href="http://developer.android.com/reference/android/view/View.html#onCreateDrawableState(int)" target="_blank">[Android Documentation]</a>
+        ///   </format>
+        /// </para>
+        /// </remarks>
+        /// <since version="Added in API level 1" />
+        /// <altmember cref="M:Android.Views.View.MergeDrawableStates(System.Int32[], System.Int32[])" />
         protected override int[] OnCreateDrawableState(int extraSpace)
         {
             int[] drawableState = base.OnCreateDrawableState(extraSpace + 1);
