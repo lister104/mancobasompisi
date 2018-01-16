@@ -1,0 +1,33 @@
+<resources>
+  <!-- Default screen margins, per the Android Design guidelines. -->
+  <dimen name="activity_horizontal_margin">16dp</dimen>
+  <dimen name="activity_vertical_margin">16dp</dimen>
+  <dimen name="list_horizontal_margin">5dp</dimen>
+  <dimen name="list_vertical_margin">3dp</dimen>
+  <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp: https://developer.android.com/design/patterns/navigation-drawer.html -->
+  <dimen name="navigation_drawer_width">280dp</dimen>
+
+  <!-- Text Sizes -->
+  <dimen name="text_micro">9sp</dimen>
+  <dimen name="text_tiny">13sp</dimen>
+  <dimen name="text_small">15sp</dimen>
+  <dimen name="text_medium">17sp</dimen>
+  <dimen name="text_large">20sp</dimen>
+  <!--<dimen name="text_max_lines">2</dimen>-->
+
+  <!-- Map Event Max height -->
+  <dimen name="map_event_container">300dp</dimen>
+
+  <!-- Floating action -->
+  <dimen name="fab_elevation">6dp</dimen>
+  <dimen name="fab_press_translation_z">6dp</dimen>
+  <dimen name="fab_size">56dp</dimen>
+  <dimen name="fab_size_small">40dp</dimen>
+  <dimen name="fab_icon_size">24dp</dimen>
+
+  <!-- Map Event Max height -->
+  <dimen name="map_event_container">300dp</dimen>
+
+  <!--- Mancoba textSize -->
+  <dimen name="mancoba_header_size">22dp</dimen>
+</resources>

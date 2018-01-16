@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light">
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/login" />
+    <LinearLayout
+        style="@style/layout_center_vertical"
+        android:layout_height="match_parent"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_width="480dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical">
+        <ProgressBar
+            android:id="@+id/progressLogin"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dip"
+            android:layout_marginRight="0dip"
+            local:MvxBind="Visibility Visibility(IsLoading)"
+            android:layout_gravity="top|center"
+            android:gravity="top|center"
+            android:layout_alignParentTop="false" />
+    <!-- MiX Logo -->
+        <ImageView
+            style="@style/logo_mancoba_main" />
+    <!-- App name -->
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minWidth="25px"
+            android:minHeight="20px">
+            <TextView
+                android:id="@+id/appnametext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="7dp"
+                android:text="Mancoba - Login"
+                android:textColor="@color/ourotherblue"
+                android:textSize="@dimen/mancoba_header_size" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/medium_grey"
+            android:textSize="16dp"
+            android:id="@+id/emailaddressLabel"
+            local:MvxBind="Text EmailAddressPlaceholder; Visibility Visibility(IsWidgetVisible)"
+            android:fontFamily="sans-serif" />
+        <EditText
+            android:background="@android:color/transparent"
+            style="@style/form_input_login"
+            local:MvxBind="Text EmailAddress; Visibility Visibility(IsWidgetVisible)"
+            android:layout_width="match_parent"
+            android:layout_height="40.0dp"
+            android:id="@+id/emailaddressEditText"
+            android:padding="0dp"
+            android:fontFamily="sans-serif" />
+        <View
+            android:id="@+id/emailaddressUnderline"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="#cccccc"
+            local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+        <View
+            style="@style/spacer" />
+    <!-- Password -->
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/medium_grey"
+            android:textSize="16dp"
+            local:MvxBind="Text PasswordPlaceholder; Visibility Visibility(IsWidgetVisible)"
+            android:fontFamily="sans-serif" />
+        <EditText
+            android:background="@android:color/transparent"
+            style="@style/form_input_login"
+            local:MvxBind="Text Password; Visibility Visibility(IsWidgetVisible)"
+            android:password="true"
+            android:layout_height="35.0dp"
+            android:layout_width="match_parent"
+            android:padding="0dp"
+            android:id="@+id/passwordEditText"
+            android:fontFamily="sans-serif" />
+        <View
+            android:id="@+id/passwordUnderline"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="#cccccc"
+            local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+        <View
+            style="@style/spacer" />
+    <!-- Login button -->
+        <Button
+            style="@style/button"
+            local:MvxBind="Text LoginButtonTitle; Click LoginCommand; Visibility Visibility(IsWidgetVisible); Enabled IsNotLoading"
+            android:layout_height="50.0dp"
+            android:background="#3b6285" />
+        <View
+            style="@style/spacer" />
+        <TextView
+            android:id="@+id/text_forgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:clickable="true"
+            local:MvxBind="Text LoginForgotPassword; Visibility Visibility(IsWidgetVisible)"
+            android:textSize="16dp"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif" />
+    <!-- App version -->
+    </LinearLayout>
+    <LinearLayout
+        style="@style/layout_vertical"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/text_terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:clickable="true"
+            local:MvxBind="Text LoginTerms; Click TermsCommand; Visibility Visibility(IsWidgetVisible)"
+            android:textSize="14dp"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif" />
+        <TextView
+            android:id="@+id/text_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/medium_grey"
+            android:textSize="@dimen/text_tiny"
+            android:layout_gravity="center"
+            local:MvxBind="Text LoginVersion"
+            android:fontFamily="sans-serif"
+            android:paddingBottom="10dp" />
+    </LinearLayout>
+</RelativeLayout>

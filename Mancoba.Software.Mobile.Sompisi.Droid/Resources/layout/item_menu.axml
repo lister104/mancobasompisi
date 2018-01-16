@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    style="@style/layout_horizontal"
+    android:id="@+id/menuitem"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+    android:background="?android:attr/activatedBackgroundIndicator">
+  <Mvx.MvxImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="10dp"
+      android:layout_gravity="center_vertical"
+      android:id="@+id/menuimage" />
+  <TextView
+      style="@style/nav_list_item"
+      android:id="@+id/menutext"
+      local:MvxBind="Text Title"
+      android:textAppearance="?android:attr/textAppearanceListItem"
+      android:singleLine="true" />
+</LinearLayout>

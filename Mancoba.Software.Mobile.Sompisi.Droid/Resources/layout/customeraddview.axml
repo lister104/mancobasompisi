@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+   android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            android:background="@color/white"
+			
+				 style="@style/layout_center_vertical"      
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"       
+        android:gravity="top"
+			android:layout_alignParentTop="true">
+       <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"       
+		android:paddingTop="5dp"
+		android:paddingBottom="5dp">
+                <TextView
+                    style="@style/list_item_label_heading"
+                    android:gravity="left"
+                    android:textColor="@color/primary"
+				local:MvxBind="Text CustomerInforHeading;" />
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#efefef" />
+		    </LinearLayout>	
+			 
+			<TextView
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:textColor="@color/medium_grey"
+	   android:textSize="14dp"
+	   android:id="@+id/lastnameLabel"
+	   local:MvxBind="Text LastNamePlaceholder; Visibility Visibility(IsWidgetVisible)"
+	   android:fontFamily="sans-serif" />
+			<EditText
+				android:background="@android:color/transparent"
+				style="@style/form_add_customer"
+				local:MvxBind="Text LastName; Visibility Visibility(IsWidgetVisible)"
+				android:layout_width="match_parent"
+				android:layout_height="30.0dp"
+				android:id="@+id/lastnameEditText"
+				android:padding="0dp"
+				android:fontFamily="sans-serif" />
+			<View
+				android:id="@+id/lastnameUnderline"
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#cccccc"
+				local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+			<View
+				style="@style/spacer" />
+
+
+			<TextView
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:textColor="@color/medium_grey"
+	   android:textSize="14dp"
+	   android:id="@+id/firstnameLabel"
+	   local:MvxBind="Text FirstNamesPlaceholder; Visibility Visibility(IsWidgetVisible)"
+	   android:fontFamily="sans-serif" />
+			<EditText
+				android:background="@android:color/transparent"
+				style="@style/form_add_customer"
+				local:MvxBind="Text FirstName; Visibility Visibility(IsWidgetVisible)"
+				android:layout_width="match_parent"
+				android:layout_height="30.0dp"
+				android:id="@+id/firstnameEditText"
+				android:padding="0dp"
+				android:fontFamily="sans-serif" />
+			<View
+				android:id="@+id/firstnameUnderline"
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#cccccc"
+				local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+			<View
+				style="@style/spacer" />
+
+			<TextView
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:textColor="@color/medium_grey"
+	   android:textSize="14dp"
+	   android:id="@+id/usertitleLabel"
+	   local:MvxBind="Text UserTitlePlaceholder; Visibility Visibility(IsWidgetVisible)"
+	   android:fontFamily="sans-serif" />
+
+			<MvxSpinner android:id="@+id/usertitleEditText"
+	 android:layout_width="match_parent"
+				android:layout_height="30.0dp"	  	  
+						android:padding="0dp"
+				android:fontFamily="sans-serif" 
+                   local:MvxItemTemplate="@layout/spinner_item"
+	   local:MvxDropDownItemTemplate="@layout/spinner_item_dropdown"
+	   local:MvxBind="ItemsSource UserTitleItemsSource;SelectedItem UserTitleSelectedItem; Visibility Visibility(IsWidgetVisible)" />				
+			<View
+				android:id="@+id/usertitleUnderline"
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#cccccc"
+				local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+			<View
+				style="@style/spacer" />
+
+			<TextView
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:textColor="@color/medium_grey"
+	   android:textSize="14dp"
+	   android:id="@+id/idnumberLabel"
+	   local:MvxBind="Text IdNumberPlaceholder; Visibility Visibility(IsWidgetVisible)"
+	   android:fontFamily="sans-serif" />
+			<EditText
+				android:background="@android:color/transparent"
+				style="@style/form_add_customer"
+				local:MvxBind="Text IdNumber; Visibility Visibility(IsWidgetVisible)"
+				android:layout_width="match_parent"
+				android:layout_height="30.0dp"
+				android:id="@+id/idnumberEditText"
+				android:padding="0dp"
+				android:fontFamily="sans-serif" />
+			<View
+				android:id="@+id/idnumberUnderline"
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#cccccc"
+				local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+			<View
+				style="@style/spacer" />
+				
+			
+ <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"            
+		android:paddingTop="5dp"
+		android:paddingBottom="5dp">
+			<TextView
+				style="@style/list_item_label_heading"
+				android:gravity="left"
+				android:textColor="@color/primary"
+				local:MvxBind="Text AddressInforHeading;" />
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#efefef" />
+	  </LinearLayout>				 
+			<TextView
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:textColor="@color/medium_grey"
+	   android:textSize="14dp"
+	   android:id="@+id/provinceLabel"
+	   local:MvxBind="Text ProvincePlaceholder; Visibility Visibility(IsWidgetVisible)"
+	   android:fontFamily="sans-serif" />
+    <MvxSpinner android:id="@+id/provinceEditText" style="@style/spinner_dropdownlist" local:MvxItemTemplate="@layout/spinner_item"
+	   local:MvxDropDownItemTemplate="@layout/spinner_item_dropdown"	 
+	   local:MvxBind="ItemsSource ProvinceItemsSource;SelectedItem ProvinceSelectedItem; Visibility Visibility(IsWidgetVisible)" />			
+			<View
+				android:id="@+id/provinceUnderline"
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#cccccc"
+				local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+			<View
+				style="@style/spacer" />
+
+
+			<TextView
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:textColor="@color/medium_grey"
+	   android:textSize="14dp"
+	   android:id="@+id/townLabel"
+	   local:MvxBind="Text TownPlaceholder; Visibility Visibility(IsWidgetVisible)"
+	   android:fontFamily="sans-serif" />
+          <MvxSpinner android:id="@+id/townEditText" style="@style/spinner_dropdownlist" local:MvxItemTemplate="@layout/spinner_item"
+	   local:MvxDropDownItemTemplate="@layout/spinner_item_dropdown"
+	   local:MvxBind="ItemsSource TownItemsSource;SelectedItem TownSelectedItem; Visibility Visibility(IsWidgetVisible)" />
+         
+			<View
+				android:id="@+id/townUnderline"
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#cccccc"
+				local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+			<View
+				style="@style/spacer" />
+
+			<TextView
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:textColor="@color/medium_grey"
+	   android:textSize="14dp"
+	   android:id="@+id/suburbLabel"
+	   local:MvxBind="Text SuburbPlaceholder; Visibility Visibility(IsWidgetVisible)"
+	   android:fontFamily="sans-serif" />
+          <MvxSpinner android:id="@+id/suburbEditText" style="@style/spinner_dropdownlist" local:MvxItemTemplate="@layout/spinner_item"
+	   local:MvxDropDownItemTemplate="@layout/spinner_item_dropdown"
+	   local:MvxBind="ItemsSource SuburbItemsSource;SelectedItem SuburbSelectedItem; Visibility Visibility(IsWidgetVisible)" />
+			<View
+				android:id="@+id/suburbUnderline"
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#cccccc"
+				local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+			<View
+				style="@style/spacer" />
+
+			<TextView
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:textColor="@color/medium_grey"
+	   android:textSize="14dp"
+	   android:id="@+id/streetLabel"
+	   local:MvxBind="Text StreetPlaceholder; Visibility Visibility(IsWidgetVisible)"
+	   android:fontFamily="sans-serif" />
+          <MvxSpinner android:id="@+id/streetEditText" style="@style/spinner_dropdownlist" local:MvxItemTemplate="@layout/spinner_item"
+	   local:MvxDropDownItemTemplate="@layout/spinner_item_dropdown"
+	   local:MvxBind="ItemsSource StreetItemsSource;SelectedItem StreetSelectedItem; Visibility Visibility(IsWidgetVisible)" />
+			<View
+				android:id="@+id/streetUnderline"
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#cccccc"
+				local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+
+			<View
+			style="@style/spacer" />
+			<TextView
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:textColor="@color/medium_grey"
+	   android:textSize="14dp"
+	   android:id="@+id/houseLabel"
+	   local:MvxBind="Text HouseNumberPlaceholder; Visibility Visibility(IsWidgetVisible)"
+	   android:fontFamily="sans-serif" />
+			<EditText
+				android:background="@android:color/transparent"
+				style="@style/form_add_customer"
+				local:MvxBind="Text House; Visibility Visibility(IsWidgetVisible)"
+				android:layout_width="match_parent"
+				android:layout_height="30.0dp"
+				android:id="@+id/houseEditText"
+				android:padding="0dp"
+				android:fontFamily="sans-serif" />
+			<View
+				android:id="@+id/houseUnderline"
+				android:layout_width="match_parent"
+				android:layout_height="0.8dp"
+				android:background="#cccccc"
+				local:MvxBind="Visibility Visibility(IsWidgetVisible)" />
+</LinearLayout>					
+	   </ScrollView>
+	<ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        local:MvxBind="Visibility Visibility(IsLoading)"
+        android:layout_alignParentLeft="true"
+        android:layout_above="@id/scroll" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true">
+		<Button
+            android:id="@+id/cancel"
+            style="@style/button"
+            android:background="#dddddd"
+            android:textColor="#9f9f9f"
+            local:MvxBind="Text CancelButtonLabel; Click CancelCommand "
+            android:layout_height="50.0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_weight=".5" />
+		<Button
+            android:id="@+id/save"
+            style="@style/button"
+            local:MvxBind="Text SaveButtonLabel ; Click SaveCommand "
+            android:layout_height="50.0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_weight=".5" />
+	</LinearLayout>
+ 
+</RelativeLayout>

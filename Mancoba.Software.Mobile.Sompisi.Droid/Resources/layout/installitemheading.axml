@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/light">
+  <TableRow
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="10dp"
+      android:layout_marginBottom="5dp">
+    <TextView
+        android:id="@+id/wire"
+        style="@style/install_item_heading"
+        local:MvxBind="Text Wire"
+        android:layout_column="1" />
+    <TextView
+        android:id="@+id/line"
+        style="@style/install_item_heading"
+        local:MvxBind="Text Line;"
+        android:layout_column="2" />
+    <TextView
+        android:id="@+id/connection"
+        style="@style/install_item_heading"
+        local:MvxBind="Text Connection;"
+        android:layout_column="3" />
+  </TableRow>
+</TableLayout>

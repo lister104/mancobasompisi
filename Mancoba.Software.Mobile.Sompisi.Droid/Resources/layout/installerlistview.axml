@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light">
+  <FrameLayout
+      android:id="@+id/adminid"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="0px"
+        android:layout_height="0px" />
+    <!-- Search filter -->
+    <LinearLayout
+        style="@style/layout_vertical">
+      <EditText
+          android:id="@+id/search"
+          style="@style/search_input"
+          local:MvxBind="Text SearchString; Hint FilterBoxLocalization" />
+      <TextView
+          android:id="@+id/count"
+          style="@style/count_label"
+          local:MvxBind="Text Count;" />
+      <RelativeLayout
+          android:id="@+id/scrollview"
+          android:listSelector="@color/clear"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:layout_marginBottom="10dp">
+        <Mancoba.Sompisi.Droid.Classes.Controls.MvxSwipeRefreshLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/refresher"
+            local:MvxBind="Refreshing IsFetching">
+          <Mvx.MvxListView
+              android:id="@+id/orderlist"
+              style="@style/layout_vertical"
+              android:listSelector="@color/clear"
+              android:divider="@color/clear"
+              local:MvxBind="ItemsSource FilteredList;ItemClick InstallerSelectedCommand"
+              local:MvxItemTemplate="@layout/installersearchitem" />
+        </Mancoba.Sompisi.Droid.Classes.Controls.MvxSwipeRefreshLayout>
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            local:MvxBind="Visibility Visibility(IsLoading)"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@id/orderlist" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignParentBottom="true" />
+      </RelativeLayout>
+    </LinearLayout>
+  </FrameLayout>
+</LinearLayout>

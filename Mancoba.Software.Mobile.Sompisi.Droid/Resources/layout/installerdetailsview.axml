@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fillViewport="true">
+    <LinearLayout
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:background="@color/white">
+      <LinearLayout
+          style="@style/list_item_vertical">
+        <TextView
+            style="@style/list_item_label_heading"
+            android:gravity="left"
+            android:textColor="@color/primary"
+            local:MvxBind="Text InstallerInforHeading;" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="#efefef" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text NameLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text Name;" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text ContactPersonLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text ContactPerson;" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text PhoneNumberLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            android:textColor="@color/ourotherblue"
+            android:clickable="true"
+            local:MvxBind="Text PhoneNumber; Click PhoneNumberCommand;" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text MobileNumberLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text MobileNumber;" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text EmailAddressLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text EmailAddress;" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text WebAddressLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text WebAddress;" />
+      </LinearLayout>
+      <!-- ADDRESS START -->
+      <LinearLayout
+          style="@style/list_item_vertical">
+        <TextView
+            style="@style/list_item_label_heading"
+            android:gravity="left"
+            android:textColor="@color/primary"
+            local:MvxBind="Text AddressInforHeading;" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="#efefef" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text CountryLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text CountryName;" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text ProvinceLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text ProvinceName;" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text TownLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text TownName;" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text SuburbLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text SuburbName;" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text StreetLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text StreetName;" />
+      </LinearLayout>
+      <LinearLayout
+          style="@style/detail_item_horizontal">
+        <TextView
+            style="@style/list_item_label"
+            local:MvxBind="Text HouseNumberLabel;" />
+        <TextView
+            style="@style/list_item_value"
+            local:MvxBind="Text HouseName;" />
+      </LinearLayout>
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="100dp"
+          android:background="@color/light" />
+    </LinearLayout>
+  </ScrollView>
+  <ProgressBar
+      android:id="@+id/progress"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      local:MvxBind="Visibility Visibility(IsLoading)"
+      android:layout_alignParentLeft="true"
+      android:layout_above="@id/scroll" />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:layout_alignParentBottom="true">
+    <Button
+        android:id="@+id/cancel"
+        style="@style/button"
+        android:background="#dddddd"
+        android:textColor="#9f9f9f"
+        local:MvxBind="Text BackButtonLabel; Click BackCommand "
+        android:layout_height="50.0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight=".5" />
+    <Button
+        android:id="@+id/accept"
+        style="@style/button"
+        local:MvxBind="Text FavouriteButtonLabel; Click MakeFavouriteCommand "
+        android:layout_height="50.0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight=".5" />
+  </LinearLayout>
+</RelativeLayout>

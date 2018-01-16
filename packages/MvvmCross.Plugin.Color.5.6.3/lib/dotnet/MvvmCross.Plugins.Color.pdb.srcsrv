@@ -1,0 +1,17 @@
+SRCSRV: ini ------------------------------------------------
+VERSION=2
+SRCSRV: variables ------------------------------------------
+RAWURL=https://raw.github.com/mvvmcross/mvvmcross/a97973fef7528c2c8b60f39f0682fbca98cd1143/%var2%
+SRCSRVVERCTRL=https
+SRCSRVTRG=%RAWURL%
+SRCSRV: source files ---------------------------------------
+C:\projects\mvvmcross\MvvmCross-Plugins\Color\MvvmCross.Plugins.Color\MvxARGBValueConverter.cs*MvvmCross-Plugins/Color/MvvmCross.Plugins.Color/MvxARGBValueConverter.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\Color\MvvmCross.Plugins.Color\MvxRGBAValueConverter.cs*MvvmCross-Plugins/Color/MvvmCross.Plugins.Color/MvxRGBAValueConverter.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\Color\MvvmCross.Plugins.Color\MvxRGBIntColorValueConverter.cs*MvvmCross-Plugins/Color/MvvmCross.Plugins.Color/MvxRGBIntColorValueConverter.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\Color\MvvmCross.Plugins.Color\MvxRGBValueConverter.cs*MvvmCross-Plugins/Color/MvvmCross.Plugins.Color/MvxRGBValueConverter.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\Color\MvvmCross.Plugins.Color\PluginLoader.cs*MvvmCross-Plugins/Color/MvvmCross.Plugins.Color/PluginLoader.cs
+C:\projects\mvvmcross\AssemblyInfo.cs*AssemblyInfo.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\Color\MvvmCross.Plugins.Color\MvxColorValueConverter.cs*MvvmCross-Plugins/Color/MvvmCross.Plugins.Color/MvxColorValueConverter.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\Color\MvvmCross.Plugins.Color\MvxNativeColorValueConverter.cs*MvvmCross-Plugins/Color/MvvmCross.Plugins.Color/MvxNativeColorValueConverter.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\All\MvvmCross.Plugins.All\Preserve.cs*MvvmCross-Plugins/All/MvvmCross.Plugins.All/Preserve.cs
+SRCSRV: end ------------------------------------------------

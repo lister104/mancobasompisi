@@ -1,0 +1,11 @@
+﻿<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item android:id="@+id/action_selections"
+		    android:icon="@drawable/menu"
+		    android:title="Quick Selections"
+		    app:showAsAction="ifRoom"/>
+  <item android:id="@+id/menu_cancel"
+        android:showAsAction="ifRoom"
+        android:textColor="#DDDDDD"
+        android:title="Edit"/>
+</menu>

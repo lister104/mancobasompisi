@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    style="@style/layout_vertical"
+    android:background="@color/light">
+  <!-- Content -->
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+    <TextView
+        style="@style/dialog_content"
+        local:MvxBind="Text TermsAndConditionsText" />
+  </ScrollView>
+  <Button
+      style="@style/form_button"
+      android:layout_width="match_parent"
+      android:layout_height="50.0dp"
+      android:id="@+id/ok_btn"
+      android:background="@drawable/form_button_submit_rounded"
+      local:MvxBind="Text TermsOK" />
+</LinearLayout>

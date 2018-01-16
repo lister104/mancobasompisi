@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">#85E76E</color>
+  <color name="colorPrimaryDark">#6CBD5C</color>
+  <color name="colorAccent">#C2EF66</color>
+  <color name="grey_text">#b4b4b4</color>
+  <color name="primary">#525252</color>
+  <color name="secondary">#808080</color>
+  <color name="hint">#CCCCCC</color>
+  <color name="grey">#cfcece</color>
+  <color name="list_divider">#cacaca</color>
+  <color name="light_grey">#dddddd</color>
+  <color name="medium_grey">#9f9f9f</color>
+  <color name="dark_grey">#444444</color>
+  <color name="transparentlight_grey">#33dddddd</color>
+  <color name="ourblue">#3b6285</color>
+  <color name="ourotherblue">#3b6285</color>
+  <color name="transparentgreen">#333b6285</color>
+  <color name="lighter_grey">#eaeaea</color>
+  <color name="light">#f1f2f2</color>
+  <color name="night">#222222</color>
+  <color name="white">#ffffffff</color>
+  <color name="red">#ffcc3333</color>
+  <color name="orange">#dc8f34</color>
+  <color name="transparentorange">#33dc8f34</color>
+  <color name="blue">#FF231f20</color>
+  <color name="purple">#7B68EE</color>
+  <color name="white">#ffffff</color>
+  <color name="whitetransparent">#ddffffff</color>
+  <color name="clear">#00000000</color>
+  <color name="transparent">#49000000</color>
+  <color name="transparentmedium">#55000000</color>
+  <color name="darktext">#666666</color>
+  <color name="azure">#00FFFF</color>
+  <color name="green">#3b6285</color>
+  <!-- Navigation list  -->
+  <color name="nav">#222222</color>
+  <color name="black">#212121</color>
+  <color name="nav_background">#444444</color>
+  <color name="nav_background_selected">#2f2f2f</color>
+  <color name="admin_background_selected">#e6e6e6</color>
+  <color name="nav_divider">#535353</color>
+  <color name="nav_header">#cccccc</color>
+  <color name="nav_header_color">#646464</color>
+
+  <!-- Overlay colors -->
+  <color name="white_overlay">#E6ffffff</color>
+  <color name="fab_color_1">#ff5252</color>
+  <color name="fab_color_1_muted">#ff8080</color>
+  <color name="fab_color_2">#9c27b0</color>
+  <color name="fab_color_2_muted">#a56ab0</color>
+</resources>

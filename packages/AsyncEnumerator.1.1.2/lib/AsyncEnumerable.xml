@@ -1,0 +1,463 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AsyncEnumerable</name>
+    </assembly>
+    <members>
+        <member name="T:System.Collections.Async.AsyncEnumerable`1">
+            <summary>
+            Helps to enumerate items in a collection asynchronously
+            </summary>
+            <example>
+            <code>
+            IAsyncEnumerable&lt;int&gt; ProduceNumbers(int start, int end)
+            {
+              return new AsyncEnumerable&lt;int&gt;(async yield => {
+                for (int number = start; number &lt;= end; number++)
+                  await yield.ReturnAsync(number);
+              });
+            }
+            
+            async Task ConsumeAsync()
+            {
+              var asyncEnumerableCollection = ProduceNumbers(start: 1, end: 10);
+              await asyncEnumerableCollection.ForEachAsync(async number => {
+                await Console.Out.WriteLineAsync(number)
+              });
+            }
+            
+            // It's backward compatible with synchronous enumeration, but gives no benefits
+            void ConsumeSync()
+            {
+              var enumerableCollection = ProduceNumbers(start: 1, end: 10);
+              foreach (var number in enumerableCollection) {
+                Console.Out.WriteLine(number)
+              };
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerable`1.#ctor(System.Func{System.Collections.Async.AsyncEnumerator{`0}.Yield,System.Threading.Tasks.Task})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="enumerationFunction">A function that enumerates items in a collection asynchronously</param>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerable`1.#ctor(System.Func{System.Collections.Async.AsyncEnumerator{`0}.Yield,System.Threading.Tasks.Task},System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="enumerationFunction">A function that enumerates items in a collection asynchronously</param>
+            <param name="oneTimeUse">When True the enumeration can be performed once only and Reset method is not allowed</param>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerable`1.GetAsyncEnumeratorAsync(System.Threading.CancellationToken)">
+            <summary>
+            Creates an enumerator that iterates through a collection asynchronously
+            </summary>
+            <param name="cancellationToken">A cancellation token to cancel creation of the enumerator in case if it takes a lot of time</param>
+            <returns>Returns a task with the created enumerator as result on completion</returns>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerable`1.System#Collections#Async#IAsyncEnumerable#GetAsyncEnumeratorAsync(System.Threading.CancellationToken)">
+            <summary>
+            Creates an enumerator that iterates through a collection asynchronously
+            </summary>
+            <param name="cancellationToken">A cancellation token to cancel creation of the enumerator in case if it takes a lot of time</param>
+            <returns>Returns a task with the created enumerator as result on completion</returns>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerable`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection
+            </summary>
+            <returns>An instance of enumerator</returns>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerable`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection
+            </summary>
+            <returns>An instance of enumerator</returns>
+        </member>
+        <member name="T:System.Collections.Async.AsyncEnumerator`1">
+            <summary>
+            Helps to enumerate items in a collection asynchronously
+            </summary>
+        </member>
+        <member name="T:System.Collections.Async.AsyncEnumerator`1.AsyncEnumerationCanceledException">
+            <summary>
+            This exception is thrown when you call <see cref="M:System.Collections.Async.AsyncEnumerator`1.Yield.Break"/>
+            </summary>
+        </member>
+        <member name="T:System.Collections.Async.AsyncEnumerator`1.Yield">
+            <summary>
+            The asynchronous version of the 'yield' construction
+            </summary>
+        </member>
+        <member name="P:System.Collections.Async.AsyncEnumerator`1.Yield.CancellationToken">
+            <summary>
+            Gets the cancellation token that was passed to the <see cref="M:System.Collections.Async.AsyncEnumerator`1.MoveNextAsync(System.Threading.CancellationToken)"/> method
+            </summary>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerator`1.Yield.ReturnAsync(`0)">
+            <summary>
+            Yields an item asynchronously (similar to 'yield return' statement)
+            </summary>
+            <param name="item">The item of the collection to yield</param>
+            <returns>Returns a Task which tells if when you can continue to yield the next item</returns>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerator`1.Yield.Break">
+            <summary>
+            Stops iterating items in the collection (similar to 'yield break' statement)
+            </summary>
+            <exception cref="T:System.Collections.Async.AsyncEnumerator`1.AsyncEnumerationCanceledException">Always throws this exception to stop the enumeration task</exception>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerator`1.#ctor(System.Func{System.Collections.Async.AsyncEnumerator{`0}.Yield,System.Threading.Tasks.Task})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="enumerationFunction">A function that enumerates items in a collection asynchronously</param>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerator`1.#ctor(System.Func{System.Collections.Async.AsyncEnumerator{`0}.Yield,System.Threading.Tasks.Task},System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="enumerationFunction">A function that enumerates items in a collection asynchronously</param>
+            <param name="oneTimeUse">When True the enumeration can be performed once only and Reset method is not allowed</param>
+        </member>
+        <member name="P:System.Collections.Async.AsyncEnumerator`1.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator
+            </summary>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerator`1.MoveNextAsync(System.Threading.CancellationToken)">
+            <summary>
+            Advances the enumerator to the next element of the collection asynchronously
+            </summary>
+            <param name="cancellationToken">A cancellation token to cancel the enumeration</param>
+            <returns>Returns a Task that does transition to the next element. The result of the task is True if the enumerator was successfully advanced to the next element, or False if the enumerator has passed the end of the collection.</returns>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerator`1.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerator`1.ResetAsync(System.Threading.CancellationToken)">
+            <summary>
+            Sets the enumerator to its initial position asynchronously, which is before the first element in the collection
+            </summary>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerator`1.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element in the collection
+            </summary>
+        </member>
+        <member name="M:System.Collections.Async.AsyncEnumerator`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources
+            </summary>
+        </member>
+        <member name="T:System.Collections.Async.IAsyncEnumerable">
+            <summary>
+            Exposes an asynchronous enumerator, which supports a simple iteration over a non-generic collection
+            </summary>
+        </member>
+        <member name="M:System.Collections.Async.IAsyncEnumerable.GetAsyncEnumeratorAsync(System.Threading.CancellationToken)">
+            <summary>
+            Creates an enumerator that iterates through a collection asynchronously
+            </summary>
+            <param name="cancellationToken">A cancellation token to cancel creation of the enumerator in case if it takes a lot of time</param>
+            <returns>Returns a task with the created enumerator as result on completion</returns>
+        </member>
+        <member name="T:System.Collections.Async.IAsyncEnumerable`1">
+            <summary>
+            Exposes the asynchronous enumerator, which supports a simple iteration over a collection of typed items
+            </summary>
+            <typeparam name="T">The type of items in the collection</typeparam>
+        </member>
+        <member name="M:System.Collections.Async.IAsyncEnumerable`1.GetAsyncEnumeratorAsync(System.Threading.CancellationToken)">
+            <summary>
+            Creates an enumerator that iterates through a collection asynchronously
+            </summary>
+            <param name="cancellationToken">A cancellation token to cancel creation of the enumerator in case if it takes a lot of time</param>
+            <returns>Returns a task with the created enumerator as result on completion</returns>
+        </member>
+        <member name="T:System.Collections.Async.ForEachAsyncExtensions">
+            <summary>
+            Enables asynchronous 'foreach' enumeration over an IAsyncEnumerable
+            </summary>
+        </member>
+        <member name="M:System.Collections.Async.ForEachAsyncExtensions.ForEachAsync(System.Collections.Async.IAsyncEnumerable,System.Action{System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Enumerates over all elements in the collection asynchronously
+            </summary>
+            <param name="enumerable">The collection of elements which can be enumerated asynchronously</param>
+            <param name="action">A synchronous action to perform for every single item in the collection</param>
+            <param name="cancellationToken">A cancellation token to stop enumerating</param>
+            <returns>Returns a Task which does enumeration over elements in the collection</returns>
+        </member>
+        <member name="M:System.Collections.Async.ForEachAsyncExtensions.ForEachAsync(System.Collections.Async.IAsyncEnumerable,System.Action{System.Object,System.Int64},System.Threading.CancellationToken)">
+            <summary>
+            Enumerates over all elements in the collection asynchronously
+            </summary>
+            <param name="enumerable">The collection of elements which can be enumerated asynchronously</param>
+            <param name="action">A synchronous action to perform for every single item in the collection, where the second argument is the index of an item</param>
+            <param name="cancellationToken">A cancellation token to stop enumerating</param>
+            <returns>Returns a Task which does enumeration over elements in the collection</returns>
+        </member>
+        <member name="M:System.Collections.Async.ForEachAsyncExtensions.ForEachAsync(System.Collections.Async.IAsyncEnumerable,System.Func{System.Object,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Enumerates over all elements in the collection asynchronously
+            </summary>
+            <param name="enumerable">The collection of elements which can be enumerated asynchronously</param>
+            <param name="action">An asynchronous action to perform for every single item in the collection</param>
+            <param name="cancellationToken">A cancellation token to stop enumerating</param>
+            <returns>Returns a Task which does enumeration over elements in the collection</returns>
+        </member>
+        <member name="M:System.Collections.Async.ForEachAsyncExtensions.ForEachAsync(System.Collections.Async.IAsyncEnumerable,System.Func{System.Object,System.Int64,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Enumerates over all elements in the collection asynchronously
+            </summary>
+            <param name="enumerable">The collection of elements which can be enumerated asynchronously</param>
+            <param name="action">An asynchronous action to perform for every single item in the collection, where the second argument is the index of an item</param>
+            <param name="cancellationToken">A cancellation token to stop enumerating</param>
+            <returns>Returns a Task which does enumeration over elements in the collection</returns>
+        </member>
+        <member name="M:System.Collections.Async.ForEachAsyncExtensions.ForEachAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Action{``0},System.Threading.CancellationToken)">
+            <summary>
+            Enumerates over all elements in the collection asynchronously
+            </summary>
+            <typeparam name="T">The type of elements in the collection</typeparam>
+            <param name="enumerable">The collection of elements which can be enumerated asynchronously</param>
+            <param name="action">A synchronous action to perform for every single item in the collection</param>
+            <param name="cancellationToken">A cancellation token to stop enumerating</param>
+            <returns>Returns a Task which does enumeration over elements in the collection</returns>
+        </member>
+        <member name="M:System.Collections.Async.ForEachAsyncExtensions.ForEachAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Action{``0,System.Int64},System.Threading.CancellationToken)">
+            <summary>
+            Enumerates over all elements in the collection asynchronously
+            </summary>
+            <typeparam name="T">The type of elements in the collection</typeparam>
+            <param name="enumerable">The collection of elements which can be enumerated asynchronously</param>
+            <param name="action">A synchronous action to perform for every single item in the collection, where the second argument is the index of an item</param>
+            <param name="cancellationToken">A cancellation token to stop enumerating</param>
+            <returns>Returns a Task which does enumeration over elements in the collection</returns>
+        </member>
+        <member name="M:System.Collections.Async.ForEachAsyncExtensions.ForEachAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Enumerates over all elements in the collection asynchronously
+            </summary>
+            <typeparam name="T">The type of elements in the collection</typeparam>
+            <param name="enumerable">The collection of elements which can be enumerated asynchronously</param>
+            <param name="action">An asynchronous action to perform for every single item in the collection</param>
+            <param name="cancellationToken">A cancellation token to stop enumerating</param>
+            <returns>Returns a Task which does enumeration over elements in the collection</returns>
+        </member>
+        <member name="M:System.Collections.Async.ForEachAsyncExtensions.ForEachAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Func{``0,System.Int64,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Enumerates over all elements in the collection asynchronously
+            </summary>
+            <typeparam name="T">The type of elements in the collection</typeparam>
+            <param name="enumerable">The collection of elements which can be enumerated asynchronously</param>
+            <param name="action">An asynchronous action to perform for every single item in the collection, where the second argument is the index of an item</param>
+            <param name="cancellationToken">A cancellation token to stop enumerating</param>
+            <returns>Returns a Task which does enumeration over elements in the collection</returns>
+        </member>
+        <member name="T:System.Collections.Async.IAsyncEnumerableExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Collections.Async.IAsyncEnumerable"/> interface
+            </summary>
+        </member>
+        <member name="M:System.Collections.Async.IAsyncEnumerableExtensions.ToListAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Creates a list of elements asynchronously from the enumerable source
+            </summary>
+            <typeparam name="T">The type of the elements of source</typeparam>
+            <param name="source">The collection of elements</param>
+            <param name="cancellationToken">A cancellation token to cancel the async operation</param>
+        </member>
+        <member name="M:System.Collections.Async.IAsyncEnumerableExtensions.ToArrayAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Creates an array of elements asynchronously from the enumerable source
+            </summary>
+            <typeparam name="T">The type of the elements of source</typeparam>
+            <param name="source">The collection of elements</param>
+            <param name="cancellationToken">A cancellation token to cancel the async operation</param>
+        </member>
+        <member name="T:System.Collections.Async.IAsyncEnumerator">
+            <summary>
+            Supports a simple asynchronous iteration over a non-generic collection
+            </summary>
+        </member>
+        <member name="M:System.Collections.Async.IAsyncEnumerator.MoveNextAsync(System.Threading.CancellationToken)">
+            <summary>
+            Advances the enumerator to the next element of the collection asynchronously
+            </summary>
+            <param name="cancellationToken">A cancellation token to cancel the enumeration</param>
+            <returns>Returns a Task that does transition to the next element. The result of the task is True if the enumerator was successfully advanced to the next element, or False if the enumerator has passed the end of the collection.</returns>
+        </member>
+        <member name="M:System.Collections.Async.IAsyncEnumerator.ResetAsync(System.Threading.CancellationToken)">
+            <summary>
+            Sets the enumerator to its initial position asynchronously, which is before the first element in the collection
+            </summary>
+            <param name="cancellationToken">A cancellation token to cancel the resetting</param>
+            <returns>Returns a task with completes when resetting is done</returns>
+        </member>
+        <member name="T:System.Collections.Async.IAsyncEnumerator`1">
+            <summary>
+            Supports a simple asynchronous iteration over a collection of typed items
+            </summary>
+            <typeparam name="T">The type of items in the collection</typeparam>
+        </member>
+        <member name="T:System.Collections.Async.ParallelForEachExtensions">
+            <summary>
+            Extensions methods for IEnumerable and IAsyncEnumerable to do parallel for-each loop in async-await manner
+            </summary>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Func{``0,System.Int64,System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item, where first argument is the item and second argument is item's index in the collection</param>
+            <param name="maxDegreeOfParalellism">Maximum items to schedule processing in parallel. The actual concurrency level depends on TPL settings. Set to 0 to choose a default value based on processor count.</param>
+            <param name="breakLoopOnException">Set to True to stop processing items when first exception occurs. The result <see cref="T:System.AggregateException"/> might contain several exceptions though when faulty tasks finish at the same time.</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Func{``0,System.Int64,System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item, where first argument is the item and second argument is item's index in the collection</param>
+            <param name="maxDegreeOfParalellism">Maximum items to schedule processing in parallel. The actual concurrency level depends on TPL settings. Set to 0 to choose a default value based on processor count.</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Func{``0,System.Int64,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item, where first argument is the item and second argument is item's index in the collection</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item</param>
+            <param name="maxDegreeOfParalellism">Maximum items to schedule processing in parallel. The actual concurrency level depends on TPL settings. Set to 0 to choose a default value based on processor count.</param>
+            <param name="breakLoopOnException">Set to True to stop processing items when first exception occurs. The result <see cref="T:System.AggregateException"/> might contain several exceptions though when faulty tasks finish at the same time.</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item</param>
+            <param name="maxDegreeOfParalellism">Maximum items to schedule processing in parallel. The actual concurrency level depends on TPL settings. Set to 0 to choose a default value based on processor count.</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Async.IAsyncEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int64,System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item, where first argument is the item and second argument is item's index in the collection</param>
+            <param name="maxDegreeOfParalellism">Maximum items to schedule processing in parallel. The actual concurrency level depends on TPL settings. Set to 0 to choose a default value based on processor count.</param>
+            <param name="breakLoopOnException">Set to True to stop processing items when first exception occurs. The result <see cref="T:System.AggregateException"/> might contain several exceptions though when faulty tasks finish at the same time.</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int64,System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item, where first argument is the item and second argument is item's index in the collection</param>
+            <param name="maxDegreeOfParalellism">Maximum items to schedule processing in parallel. The actual concurrency level depends on TPL settings. Set to 0 to choose a default value based on processor count.</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int64,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item, where first argument is the item and second argument is item's index in the collection</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task},System.Int32,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item</param>
+            <param name="maxDegreeOfParalellism">Maximum items to schedule processing in parallel. The actual concurrency level depends on TPL settings. Set to 0 to choose a default value based on processor count.</param>
+            <param name="breakLoopOnException">Set to True to stop processing items when first exception occurs. The result <see cref="T:System.AggregateException"/> might contain several exceptions though when faulty tasks finish at the same time.</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task},System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item</param>
+            <param name="maxDegreeOfParalellism">Maximum items to schedule processing in parallel. The actual concurrency level depends on TPL settings. Set to 0 to choose a default value based on processor count.</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="M:System.Collections.Async.ParallelForEachExtensions.ParallelForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Invokes an asynchronous action on each item in the collection in parallel
+            </summary>
+            <typeparam name="T">The type of an item</typeparam>
+            <param name="collection">The collection of items to perform actions on</param>
+            <param name="asyncItemAction">An asynchronous action to perform on the item</param>
+            <param name="cancellationToken">Cancellation token</param>
+        </member>
+        <member name="T:System.Collections.IEnumerableExtensions">
+            <summary>
+            Converts generic IEnumerable to IAsyncEnumerable
+            </summary>
+        </member>
+        <member name="M:System.Collections.IEnumerableExtensions.ToAsyncEnumerable(System.Collections.IEnumerable,System.Boolean)">
+            <summary>
+            Converts IEnumerable to IAsyncEnumerable 
+            </summary>
+            <param name="enumerable">The instance of IEnumerable to convert</param>
+            <param name="runSynchronously">If True the enumeration will be performed on the same thread, otherwise the MoveNext will be executed on a separate thread with Task.Run method</param>
+            <returns>Returns an instance of IAsyncEnumerable implementation</returns>
+        </member>
+        <member name="T:System.Collections.Generic.IEnumerableExtensions">
+            <summary>
+            Converts generic IEnumerable to IAsyncEnumerable
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.IEnumerableExtensions.ToAsyncEnumerable``1(System.Collections.Generic.IEnumerable{``0},System.Boolean)">
+            <summary>
+            Converts generic IEnumerable to IAsyncEnumerable 
+            </summary>
+            <typeparam name="T">The element type</typeparam>
+            <param name="enumerable">The instance of IEnumerable to convert</param>
+            <param name="runSynchronously">If True the enumeration will be performed on the same thread, otherwise the MoveNext will be executed on a separate thread with Task.Run method</param>
+            <returns>Returns an instance of IAsyncEnumerable implementation</returns>
+        </member>
+    </members>
+</doc>

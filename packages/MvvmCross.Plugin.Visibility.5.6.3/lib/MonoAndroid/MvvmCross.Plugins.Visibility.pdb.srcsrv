@@ -1,0 +1,14 @@
+SRCSRV: ini ------------------------------------------------
+VERSION=2
+SRCSRV: variables ------------------------------------------
+RAWURL=https://raw.github.com/mvvmcross/mvvmcross/a97973fef7528c2c8b60f39f0682fbca98cd1143/%var2%
+SRCSRVVERCTRL=https
+SRCSRVTRG=%RAWURL%
+SRCSRV: source files ---------------------------------------
+C:\projects\mvvmcross\MvvmCross-Plugins\Visibility\MvvmCross.Plugins.Visibility\PluginLoader.cs*MvvmCross-Plugins/Visibility/MvvmCross.Plugins.Visibility/PluginLoader.cs
+C:\projects\mvvmcross\AssemblyInfo.cs*AssemblyInfo.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\Visibility\MvvmCross.Plugins.Visibility\MvxBaseVisibilityValueConverter.cs*MvvmCross-Plugins/Visibility/MvvmCross.Plugins.Visibility/MvxBaseVisibilityValueConverter.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\Visibility\MvvmCross.Plugins.Visibility\MvxInvertedVisibilityValueConverter.cs*MvvmCross-Plugins/Visibility/MvvmCross.Plugins.Visibility/MvxInvertedVisibilityValueConverter.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\Visibility\MvvmCross.Plugins.Visibility\MvxVisibilityValueConverter.cs*MvvmCross-Plugins/Visibility/MvvmCross.Plugins.Visibility/MvxVisibilityValueConverter.cs
+C:\projects\mvvmcross\MvvmCross-Plugins\All\MvvmCross.Plugins.All\Preserve.cs*MvvmCross-Plugins/All/MvvmCross.Plugins.All/Preserve.cs
+SRCSRV: end ------------------------------------------------

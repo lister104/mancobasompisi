@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+  <style name="_MiXNoBar" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowEnableSplitTouch">false</item>
+    <item name="android:splitMotionEvents">false</item>
+    <item name="android:activatedBackgroundIndicator">@drawable/listitem_background_selector</item>
+  </style>
+</resources>
