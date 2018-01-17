@@ -11,7 +11,7 @@ namespace Mancoba.Sompisi.Core.Validators
         /// </summary>
         public LoginValidator()
 		{		
-            RuleFor(x => x.EmailAddres).NotEmpty().WithMessage(LanguageResolver.LoginInvalidEmailError).EmailAddress().WithMessage(LanguageResolver.LoginInvalidEmailError);
+            RuleFor(x => x.EmailAddress).NotEmpty().WithMessage(LanguageResolver.LoginInvalidEmailError).EmailAddress().WithMessage(LanguageResolver.LoginInvalidEmailError);
             RuleFor(x => x.Password).NotEmpty().WithMessage(LanguageResolver.LoginNoPasswordError);			
 		}
 	}

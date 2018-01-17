@@ -23,7 +23,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
 		private bool _isWidgetHidden;
 		private bool _isWidgetVisible;		
 			
-		private string _emailAddres;
+		private string _emailAddress;
 		private string _password;		
 
 		private IMvxAsyncCommand _pingServerCommand;
@@ -47,7 +47,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
 
             LoginCommand = new MvxAsyncCommand(Login);
 
-            EmailAddres = "info@mancoba.co.za";
+            EmailAddress = "info@mancoba.co.za";
             Task.Run(() => _auth.GetStreets());
         }
 
@@ -93,14 +93,13 @@ namespace Mancoba.Sompisi.Core.ViewModels
 			}
 		}
 
-		public string EmailAddres
-		{
-			get { return _emailAddres; }
+		public string EmailAddress
+        {
+			get { return _emailAddress; }
 			set
 			{
-                _emailAddres = value.Trim ();
-				RaisePropertyChanged(() => EmailAddres);
-
+                _emailAddress = value.Trim ();
+				RaisePropertyChanged(() => EmailAddress);
 			}
 		}
 
@@ -222,11 +221,11 @@ namespace Mancoba.Sompisi.Core.ViewModels
 			{
 				IsLoading = true;
 
-				//string username = "chipo";
-				//string password = "chipo001";
+				//string username = "lister104";
+				//string password = "Nj3mb1#";
 
 				//bool success = await _auth.Login(username, password, "");
-				bool success = await _auth.Login(EmailAddres, Password);
+				bool success = await _auth.Login(EmailAddress, Password);
 
 				if (success)
 				{

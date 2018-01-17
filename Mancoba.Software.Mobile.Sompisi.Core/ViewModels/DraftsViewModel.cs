@@ -5,7 +5,6 @@ using Mancoba.Sompisi.Utils.Language;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
-using System;
 using System.Threading.Tasks;
 
 namespace Mancoba.Sompisi.Core.ViewModels
@@ -74,6 +73,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
         #region Data Properties
 
         public string FirstNameLabel => LanguageResolver.FirstNames;
+
         public string FirstName
         {
             get { return _firstName; }
@@ -85,6 +85,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
         }
 
         public string LastNameLabel => LanguageResolver.LastName;
+
         public string LastName
         {
             get { return _lastName; }
@@ -93,10 +94,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
                 _lastName = value;
                 RaisePropertyChanged(() => LastName);
             }
-
         }
                
         public string PhoneNumberLabel => LanguageResolver.PhoneNumber;
+
         public string PhoneNumber
         {
             get { return _phoneNumber; }
@@ -105,10 +106,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
                 _phoneNumber = value;
                 RaisePropertyChanged(() => PhoneNumber);
             }
-
         }
 
         public string MobileNumberLabel => LanguageResolver.MobileNumber;
+
         public string MobileNumber
         {
             get { return _mobileNumber; }
@@ -117,10 +118,10 @@ namespace Mancoba.Sompisi.Core.ViewModels
                 _mobileNumber = value;
                 RaisePropertyChanged(() => MobileNumber);
             }
-
         }
 
         public string EmailAddressLabel => LanguageResolver.EmailAddress;
+
         public string EmailAddress
         {
             get { return _emailAddress; }
@@ -132,6 +133,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
         }
 
         public string StreetLabel => LanguageResolver.Street;
+
         public string StreetName
         {
             get { return _streetName; }
@@ -143,6 +145,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
         }
 
         public string SuburbLabel => LanguageResolver.Suburb;
+
         public string SuburbName
         {
             get { return _suburbName; }
@@ -154,6 +157,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
         }
 
         public string TownLabel => LanguageResolver.Town;
+
         public string TownName
         {
             get { return _townName; }
@@ -165,6 +169,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
         }
 
         public string ProvinceLabel => LanguageResolver.Province;
+
         public string ProvinceName
         {
             get { return _provinceName; }
@@ -176,6 +181,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
         }
 
         public string CountryLabel => LanguageResolver.Country;
+
         public string CountryName
         {
             get { return _countryName; }
@@ -187,6 +193,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
         }
 
         public string PostalCodeLabel => LanguageResolver.PostalCode;
+
         public string PostalCode
         {
             get { return _postalCode; }
@@ -198,6 +205,7 @@ namespace Mancoba.Sompisi.Core.ViewModels
         }
 
         private bool _isHeading;
+
         public bool IsHeading
         {
             get { return _isHeading; }
